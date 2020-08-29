@@ -119,12 +119,7 @@ We also make use of labels for MR. Please tag your MR's with the coresponding on
 
 ## CI Pipeline
 
-For every new push to `master` or a merge request, the GitLab CI Pipeline is triggered. You can see the current configuration of the pipeline in the [.gitlab-ci.yml](https://github.com/davidcoroian/path-finder/blob/master/.gitlab-ci.yml) file.
-There are currently three jobs which are being executed in the pipeline:
-
-- **Test:** will run all unit and snapshot tests and notify with a message in case of failure. It is the first job because this step is the one most likely to fail. The Test job also generates the `coverage` report which is later used by SonarQube
-- **Build:** will build the project
-- **Sonar:** will run the sonarqube analysis indicating if the Quality Gate is passed and a couple of other metrics.
+WIP
 
 ## Deployment
 
@@ -157,7 +152,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-- **David** - [Gitlab profile](https://github.com/davidcoroian)
+- **David** - [Github profile](https://github.com/davidcoroian)
 
 See also the list of [contributors](https://github.com/davidcoroian/path-finder/graphs/contributors) who participated in this project.
 
