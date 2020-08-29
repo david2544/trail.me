@@ -1,3 +1,5 @@
+@import '../Styles/styles.scss';
+
 .mainHeaderNav {
   position: absolute;
   z-index: 1000;
@@ -103,7 +105,7 @@
 
     span {
       display: block;
-      background: black;
+      background: $primary;
       height: 2px;
       width: 25px;
       margin-bottom: 5px;
@@ -327,7 +329,6 @@
         .menuItemWrapper,
         .darkModeToggle {
           display: block;
-          width: 100%;
           color: black;
           padding: 10px 34px 0;
           text-align: left;
@@ -340,9 +341,12 @@
 
         .darkModeToggle {
           text-align: left;
-          border-top: 1px solid black;
           padding: 10px 34px;
           margin: 15px 0 0;
+
+          @media (max-width: 767px) {
+            text-align: center;
+          }
 
           a {
             margin: 0;
@@ -398,31 +402,42 @@
 
 .darkModeHeader {
   transition: background-color 1s ease;
-  color: black;
+  color: $dark-surface;
 
   .logoContainer {
     transition: background-color 1s ease;
-    background-color: black;
+    background-color: $dark-surface;
+  }
+
+  .navContainer {
+    @media (max-width: 767px) {
+      background-color: $dark-surface;
+      color: $primary;
+
+      .menuWrapper > .menuItemWrapper > .menuItem {
+        color: $primary;
+      }
+    }
   }
 
   .logoWrapper:before {
     transition: background-color 1s ease;
-    background-color: black;
+    background-color: $dark-surface;
   }
 
   .logoWrapper {
     transition: background-color 1s ease;
-    background-color: black;
+    background-color: $dark-surface;
 
     .logo {
       transition: background-color 1s ease;
-      background-color: black;
+      background-color: $dark-surface;
     }
   }
 
   .menuWrapper > .menuItemWrapper > .subNav > ul {
     transition: background-color 1s ease;
-    background-color: black;
+    background-color: $dark-surface;
 
     a {
       transition: background-color 1s ease;
@@ -434,7 +449,11 @@
     &:before,
     &:after {
       transition: background-color 1s ease;
-      background-color: black;
+      background-color: $dark-surface;
     }
+  }
+
+  .burgerMenu > span {
+    background-color: $primary;
   }
 }

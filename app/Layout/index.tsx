@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const history = useHistory();
   const { isDarkMode } = useToggleDarkMode();
   // Create a ref that we add to the element for which we want to detect outside clicks
-  const ref = useRef();
+  const ref = useRef<HTMLInputElement>(null);
   // State for our modal
   const [menuOpen, toggleMenu] = useState(false);
   // Call hook passing in the ref and a function to call on outside click

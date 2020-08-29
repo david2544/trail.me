@@ -1,3 +1,5 @@
+@import '/app/Layout/Styles/styles.scss';
+
 .appContainer {
   display: flex;
   height: 100vh;
@@ -9,7 +11,7 @@
 
   .bodyDarkMode {
     transition: background-color 1s ease;
-    background-color: black;
+    background-color: $dark-background;
   }
 
   @media (max-width: 767px) {
