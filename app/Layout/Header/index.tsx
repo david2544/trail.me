@@ -7,10 +7,9 @@ import DarkModeToggle from 'react-dark-mode-toggle';
 import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
 import { LINKS } from '@utils/constants';
 import Container from '@common/Container';
-import FairrLogo from '@images/logo_placeholder.png';
-import { isMenuItemActive, subHeaderItems } from '../utils';
+import Logo from '@images/logo.png';
+import { isMenuItemActive } from '../utils';
 import styles from './styles.module.scss';
-import SubNav from './SubNav';
 
 interface HeaderProps {
   history: History;
@@ -44,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({
             })}
           >
             <Link to={LINKS.home}>
-              <img alt="fairr-logo" className={styles.logo} src={FairrLogo} />
+              <img alt="fairr-logo" className={styles.logo} src={Logo} />
             </Link>
           </div>
           <button
@@ -67,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({
               [styles.active]: isMenuItemActive.isOnTransferPages(pathname),
             })}
           >
-            <Link to={LINKS.switch.general} className={styles.menuItem}>
+            {/* <Link to={LINKS.switch.general} className={styles.menuItem}>
               navi.main.transfer
             </Link>
             <div className={styles.subNav}>
@@ -76,16 +75,16 @@ const Header: React.FC<HeaderProps> = ({
                   <SubNav key={item.description} subMenuItem={item} />
                 ))}
               </ul>
-            </div>
+            </div> */}
           </li>
           <li
             className={classnames(styles.menuItemWrapper, {
               [styles.active]: isMenuItemActive.isOnSecurityPage(pathname),
             })}
           >
-            <Link to={LINKS.security} className={styles.menuItem}>
+            {/* <Link to={LINKS.security} className={styles.menuItem}>
               about
-            </Link>
+            </Link> */}
           </li>
           <li className={styles.menuItemWrapper}>
             <div className={`${styles.menuItem} ${styles.darkModeToggle}`}>

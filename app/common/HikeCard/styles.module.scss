@@ -5,6 +5,10 @@
   border-radius: 7px;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.33);
 
+  .map {
+    height: 500px;
+  }
+
   .contentWrapper {
     padding: 30px;
   }
@@ -15,8 +19,26 @@
     border-radius: 5px;
   }
 
+  ul {
+    list-style-type: none;
+
+    li {
+      color: $light-text-color;
+    }
+
+    li::before {
+      content: '\2022'; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      color: $primary; /* Change the color */
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      width: 1em; /* Also needed for space (tweak if needed) */
+      margin-left: -1em; /* Also needed for space (tweak if needed) */
+    }
+  }
+
   .hr {
     width: 50%;
+    margin: 20px 0;
     border: 1px solid $primary;
   }
 
@@ -27,5 +49,11 @@
 
 .darkModeHikeCard {
   background-color: $dark-surface;
+  transition: background-color 1s ease;
   color: $dark-text-color;
+
+  ul > li {
+    color: $dark-text-color;
+    transition: background-color 1s ease;
+  }
 }
