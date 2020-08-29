@@ -1,0 +1,31 @@
+@import '@Layout/Styles/styles.scss';
+
+.hikeCard {
+  margin: 60px 0 30px;
+  border-radius: 7px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.33);
+
+  .contentWrapper {
+    padding: 30px;
+  }
+
+  .image {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+  }
+
+  .hr {
+    width: 50%;
+    border: 1px solid $primary;
+  }
+
+  h3 {
+    color: $primary;
+  }
+}
+
+.darkModeHikeCard {
+  background-color: $dark-surface;
+  color: $dark-text-color;
+}

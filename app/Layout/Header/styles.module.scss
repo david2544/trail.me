@@ -402,16 +402,16 @@
 
 .darkModeHeader {
   transition: background-color 1s ease;
-  color: $dark-surface;
+  color: $dark-heading;
 
   .logoContainer {
     transition: background-color 1s ease;
-    background-color: $dark-surface;
+    background-color: $dark-heading;
   }
 
   .navContainer {
     @media (max-width: 767px) {
-      background-color: $dark-surface;
+      background-color: $dark-heading;
       color: $primary;
 
       .menuWrapper > .menuItemWrapper > .menuItem {
@@ -422,22 +422,22 @@
 
   .logoWrapper:before {
     transition: background-color 1s ease;
-    background-color: $dark-surface;
+    background-color: $dark-heading;
   }
 
   .logoWrapper {
     transition: background-color 1s ease;
-    background-color: $dark-surface;
+    background-color: $dark-heading;
 
     .logo {
       transition: background-color 1s ease;
-      background-color: $dark-surface;
+      background-color: $dark-heading;
     }
   }
 
   .menuWrapper > .menuItemWrapper > .subNav > ul {
     transition: background-color 1s ease;
-    background-color: $dark-surface;
+    background-color: $dark-heading;
 
     a {
       transition: background-color 1s ease;
@@ -449,7 +449,7 @@
     &:before,
     &:after {
       transition: background-color 1s ease;
-      background-color: $dark-surface;
+      background-color: $dark-heading;
     }
   }
 
