@@ -1,0 +1,40 @@
+
+.list {
+  list-style-type: none;
+  text-align: left;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 11px;
+
+  .listItem {
+    position: relative;
+    padding-bottom: 15px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    .icon {
+      margin-right: 10px;
+    }
+  }
+
+  .defaultIcon {
+    padding-left: 30px;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 7px;
+      left: 0;
+      border: 5px solid transparent;
+      border-right-color: white;
+      border-bottom-color: white;
+    }
+  }
+}
+
+.negativeMargin {
+  margin-left: -30px;
+}

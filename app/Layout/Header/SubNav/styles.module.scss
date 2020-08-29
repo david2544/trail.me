@@ -1,0 +1,91 @@
+
+@media (max-width: 767px) {
+  .subNavItem {
+    padding-top: 18px;
+    display: block;
+    color: black;
+    float: none;
+  }
+}
+
+.link {
+  padding: 0;
+  display: block;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .menuTitle {
+    display: inline-block;
+    font-size: 20px;
+    position: absolute;
+    width: 100px;
+    color: black;
+  }
+
+  .link {
+    color: black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+    position: relative;
+    text-decoration: none;
+  }
+}
+
+.menuLogo {
+  display: inline-block;
+  font-size: 20px;
+  position: absolute;
+  width: 100px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.menuDescription {
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.menuDescriptionSpacing {
+  margin-left: 110px;
+  padding-left: 12px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.subNavExternal {
+  margin-top: 3px;
+  font-weight: 300;
+  list-style: none;
+
+  @media (min-width: 768px) {
+    .menuTitle {
+      display: inline-block;
+      width: 100px;
+      position: absolute;
+      top: 5px;
+    }
+  }
+
+  .menuTitleMain {
+    font-size: 14px;
+  }
+
+  .menuTitleSub {
+    font-size: 10px;
+  }
+
+  .menuDescription {
+    width: 300px;
+    margin-left: 110px;
+    padding-left: 12px;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+}

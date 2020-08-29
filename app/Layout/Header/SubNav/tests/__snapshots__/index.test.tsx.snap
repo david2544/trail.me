@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SubNav /> should match snapshot 1`] = `
+<li
+  className="subNavItem"
+>
+  <Link
+    className="link"
+    to="some string"
+  >
+    <div
+      className="menuTitle"
+    >
+      some string
+    </div>
+    <div
+      className="menuDescription menuDescriptionSpacing"
+    >
+      some string
+    </div>
+  </Link>
+</li>
+`;
+
+exports[`<SubNav /> should match snapshot 2`] = `
+<li
+  className="subNavExternal"
+>
+  <div
+    className="subNavItem"
+  >
+    <a
+      className="link"
+      href="some string"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <div
+        className="menuTitle"
+      >
+        <div
+          className="menuTitleMain"
+        >
+          some string
+        </div>
+        <div
+          className="menuTitleSub"
+        >
+          some string
+        </div>
+      </div>
+      <div
+        className="menuDescription"
+      >
+        some string
+      </div>
+    </a>
+  </div>
+</li>
+`;

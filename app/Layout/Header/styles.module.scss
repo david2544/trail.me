@@ -1,0 +1,397 @@
+.mainHeaderNav {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  color: white;
+
+  .logoContainer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    padding-top: env(safe-area-inset-top);
+    transition: margin-top 100ms ease-in-out;
+
+    @media (min-width: 768px) {
+      height: 10px;
+      background: white;
+      box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .logoWrapper {
+    position: relative;
+    width: 3 / 12 * 100%;
+    transition: transform 100ms ease-in-out;
+    transform: scale(1, 1);
+    transform-origin: top left;
+    display: inline-block;
+
+    @media (max-width: 767px) {
+      position: relative;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      height: 10px;
+      width: 100%;
+      background: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      display: flex;
+      width: 100%;
+      background: white;
+      box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.25);
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      height: 70px;
+      padding: 5px 10px 15px;
+
+      @media (max-width: 1199px) {
+        height: 60px;
+      }
+
+      @media (max-width: 991px) {
+        height: 50px;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .minimized {
+      transform: scale(0.7, 0.7);
+    }
+  }
+
+  .navContainer {
+    @media (min-width: 992px) {
+      width: 970px;
+      pointer-events: none;
+
+      a,
+      .darkModeToggle {
+        pointer-events: all;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      width: 750px;
+      pointer-events: none;
+
+      a,
+      .darkModeToggle {
+        pointer-events: all;
+      }
+    }
+  }
+
+  .burgerMenu {
+    background: none;
+    color: inherit;
+    border: none;
+    outline: inherit;
+    display: none;
+    padding: 10px;
+    margin-top: 17px;
+    float: right;
+    cursor: pointer;
+
+    span {
+      display: block;
+      background: black;
+      height: 2px;
+      width: 25px;
+      margin-bottom: 5px;
+      transition: all 200ms ease-in-out;
+      position: relative;
+      top: 0;
+      bottom: 0;
+      transform: rotate(0deg);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .menuWrapper {
+    padding: 0;
+    list-style-type: none;
+    margin: 10px 0 9px 25%;
+    display: flex;
+
+    .menuItem {
+      background: none;
+      border: none;
+      outline: inherit;
+      padding: 20px 5px;
+      display: inline-block;
+      color: inherit;
+      position: relative;
+      z-index: 2;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    .menuItemWrapper {
+      display: inline-block;
+      flex: 1;
+      text-align: center;
+      position: relative;
+
+      @media (min-width: 768px) {
+        &.active {
+          button {
+            position: relative;
+
+            &:after {
+              content: '';
+              display: block;
+              width: 3px;
+              height: 3px;
+              background-color: white;
+              border-radius: 3px;
+              margin-top: 9px;
+              margin-left: -1px;
+              pointer-events: none;
+              position: absolute;
+              z-index: -1;
+              left: 50%;
+            }
+          }
+        }
+
+        .subNav {
+          pointer-events: none;
+          position: absolute;
+          color: black;
+          margin: -26px 0 0 -18px - 30px;
+          padding: 8px 0 0 0;
+          font-size: 14px;
+          left: 50%;
+          text-align: left;
+          white-space: nowrap;
+          transition: all 200ms ease-in-out;
+          transform: scale(0.01, 0.01);
+          transform-origin: 18px + 30px 0%;
+          opacity: 0;
+
+          ul {
+            list-style-type: none;
+            margin: 0;
+            box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
+            padding: 5px 18px;
+            background: white;
+            margin-top: 7px;
+            border-radius: 4px;
+          }
+
+          &:before,
+          &:after {
+            content: '';
+            display: block;
+            border-top-left-radius: 4px;
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            transform: rotate(45deg);
+            position: absolute;
+            top: 8px;
+            left: 39px;
+            z-index: 2;
+            pointer-events: none;
+          }
+
+          &:after {
+            z-index: -1;
+            box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
+          }
+
+          li {
+            a,
+            .darkModeToggle {
+              border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+              padding: 12px 0;
+              position: relative;
+              display: block;
+              text-decoration: none;
+            }
+
+            &.active a,
+            a.active {
+              font-weight: bold;
+            }
+
+            a:hover,
+            a:focus {
+              text-decoration: underline;
+            }
+
+            &:last-child {
+              a {
+                border-bottom: 0;
+              }
+            }
+          }
+        }
+
+        button:hover + .subNav,
+        button:focus + .subNav,
+        a:hover + .subNav,
+        a:focus + .subNav,
+        .subNav:hover {
+          pointer-events: auto;
+          transform: scale(1, 1);
+          opacity: 1;
+          z-index: 3;
+        }
+
+        button:not(:hover) + .subNav:not(:hover),
+        a:not(:hover) + .subNav:not(:hover) {
+          transition: all 200ms ease-in-out;
+          transform: scale(0.01, 0.01);
+          transform-origin: 18px + 30px 0%;
+          opacity: 0;
+        }
+
+        .subNav:focus-within {
+          pointer-events: auto;
+          transform: scale(1, 1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    position: relative;
+    height: 70px;
+
+    .logoContainer {
+      background-color: white;
+      box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+
+      .logoWrapper {
+        width: auto;
+        padding: 15px 0;
+        float: left;
+
+        &:before {
+          display: none;
+        }
+
+        .logo {
+          padding: 0;
+          position: static;
+          background-color: transparent;
+          box-shadow: none;
+          width: 125px;
+          height: 40px;
+        }
+      }
+    }
+
+    .burgerMenu {
+      display: inline-block;
+    }
+
+    nav {
+      border-bottom-left-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      max-height: 95%;
+      max-width: 90%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      padding: 70px 0 0 0;
+      white-space: nowrap;
+      overflow-y: scroll;
+      transform: translateX(100%);
+      pointer-events: none;
+      opacity: 0;
+      transition: all 200ms ease-in-out;
+
+      .menuWrapper {
+        margin: 0 20px;
+        display: block;
+
+        .menuItemWrapper,
+        .darkModeToggle {
+          display: block;
+          width: 100%;
+          color: black;
+          padding: 10px 34px 0;
+          text-align: left;
+
+          .menuItem {
+            padding: 0;
+            display: block;
+          }
+        }
+
+        .darkModeToggle {
+          text-align: left;
+          border-top: 1px solid black;
+          padding: 10px 34px;
+          margin: 15px 0 0;
+
+          a {
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        &.active {
+          &:after {
+            display: none;
+          }
+        }
+
+        .subNav {
+          padding: 0 0 0 25px;
+          font-weight: 200;
+          display: block;
+
+          ul {
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menuOpen {
+  nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .burgerMenu {
+    span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 7px;
+    }
+
+    span:nth-child(2) {
+      transform: rotate(45deg);
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: -7px;
+    }
+  }
+}

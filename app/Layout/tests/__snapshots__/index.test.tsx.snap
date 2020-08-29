@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> should match snapshot 1`] = `
+<div
+  className="appContainer"
+>
+  <div
+    className=""
+  >
+    <ClickOutside
+      onClickOutside={[Function]}
+    >
+      <Header
+        history={
+          Object {
+            "listen": [MockFunction] {
+              "calls": Array [
+                Array [
+                  [Function],
+                ],
+              ],
+              "results": Array [
+                Object {
+                  "type": "return",
+                  "value": undefined,
+                },
+              ],
+            },
+            "location": Object {
+              "pathname": "/",
+            },
+          }
+        }
+        menuOpen={false}
+        toggleMenu={[Function]}
+      />
+    </ClickOutside>
+  </div>
+  <div
+    className="bodyContainer"
+  >
+    children
+  </div>
+  <Footer
+    hasFooterMargin={true}
+  />
+</div>
+`;

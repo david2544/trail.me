@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<List /> should match snapshot 1`] = `
+<ul
+  className="list negativeMargin"
+>
+  <li
+    className="listItem defaultIcon"
+    key="1"
+  >
+    <span>
+      some content
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`<List /> should match snapshot when icon is provided 1`] = `
+<ul
+  className="list"
+>
+  <li
+    className="listItem"
+    key="1"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className="icon"
+      fixedWidth={false}
+      flip={null}
+      icon={
+        Object {
+          "icon": Array [
+            496,
+            512,
+            Array [],
+            "f118",
+            "M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm80 168c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm-160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm194.8 170.2C334.3 380.4 292.5 400 248 400s-86.3-19.6-114.8-53.8c-13.6-16.3 11-36.7 24.6-20.5 22.4 26.9 55.2 42.2 90.2 42.2s67.8-15.4 90.2-42.2c13.4-16.2 38.1 4.2 24.6 20.5z",
+          ],
+          "iconName": "smile",
+          "prefix": "fas",
+        }
+      }
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size="lg"
+      spin={false}
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+    <span>
+      some content
+    </span>
+  </li>
+</ul>
+`;

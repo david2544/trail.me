@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should match snapshot 1`] = `
+<div
+  className="mainHeaderNav"
+>
+  <div
+    className="logoContainer"
+  >
+    <Container>
+      <div
+        className="logoWrapper"
+      >
+        <Link
+          to=""
+        >
+          <Image
+            alt="fairr-logo"
+            className="logo"
+            src="IMAGE_MOCK"
+          />
+        </Link>
+      </div>
+      <button
+        className="burgerMenu"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+    </Container>
+  </div>
+  <nav
+    className="container navContainer"
+  >
+    <ul
+      className="menuWrapper"
+    >
+      <li
+        className="menuItemWrapper"
+      >
+        <button
+          className="menuItem"
+          type="button"
+        >
+          navi.main.products
+        </button>
+        <div
+          className="subNav"
+        >
+          <ul>
+            <SubNav
+              key="navi.main.products.riester.description"
+              subMenuItem={
+                Object {
+                  "description": "navi.main.products.riester.description",
+                  "icon": "TODO",
+                  "link": "/products/fairriester",
+                  "title": "fairriester",
+                }
+              }
+            />
+            <SubNav
+              key="navi.main.products.ruerup.description"
+              subMenuItem={
+                Object {
+                  "description": "navi.main.products.ruerup.description",
+                  "icon": "TODO",
+                  "link": "/products/fairruerup",
+                  "title": "fairruerup",
+                }
+              }
+            />
+            <SubNav
+              key="navi.main.products.bav.description"
+              subMenuItem={
+                Object {
+                  "description": "navi.main.products.bav.description",
+                  "icon": "TODO",
+                  "link": "/products/fairrbav",
+                  "title": "fairrbav",
+                }
+              }
+            />
+            <SubNav
+              key="navi.main.products.robo.description"
+              subMenuItem={
+                Object {
+                  "description": "navi.main.products.robo.description",
+                  "icon": "TODO",
+                  "link": "/products/fairrobo",
+                  "title": "fairrobo",
+                }
+              }
+            />
+            <SubNav
+              key="navi.external.savings-account.description"
+              subMenuItem={
+                Object {
+                  "description": "navi.external.savings-account.description",
+                  "isExternal": true,
+                  "link": "https://www.weltsparen.de/tagesgeld/",
+                  "title": "navi.external.savings-account",
+                  "titleSub": "navi.external.by-weltsparen",
+                }
+              }
+            />
+            <SubNav
+              key="navi.external.term-deposit.description"
+              subMenuItem={
+                Object {
+                  "description": "navi.external.term-deposit.description",
+                  "isExternal": true,
+                  "link": "https://www.weltsparen.de/tagesgeld/",
+                  "title": "navi.external.term-deposit",
+                  "titleSub": "navi.external.by-weltsparen",
+                }
+              }
+            />
+          </ul>
+        </div>
+      </li>
+      <li
+        className="menuItemWrapper"
+      >
+        <Link
+          className="menuItem"
+          to="/change"
+        >
+          navi.main.transfer
+        </Link>
+        <div
+          className="subNav"
+        >
+          <ul>
+            <SubNav
+              key="navi.main.transfer.riester"
+              subMenuItem={
+                Object {
+                  "description": "navi.main.transfer.riester",
+                  "link": "/change/riester",
+                }
+              }
+            />
+            <SubNav
+              key="navi.main.transfer.ruerup"
+              subMenuItem={
+                Object {
+                  "description": "navi.main.transfer.ruerup",
+                  "link": "/change/ruerup",
+                }
+              }
+            />
+          </ul>
+        </div>
+      </li>
+      <li
+        className="menuItemWrapper"
+      >
+        <Link
+          className="menuItem"
+          to="/security"
+        >
+          navi.main.security
+        </Link>
+      </li>
+      <li
+        className="loginWrapper"
+      >
+        <Link
+          to="/cockpit"
+        >
+          <Button
+            className="loginButton"
+            isGhost={true}
+            isInverted={true}
+            type="button"
+          >
+            <span>
+              Cockpit
+            </span>
+          </Button>
+        </Link>
+      </li>
+      <li
+        className="contactWrapper phone"
+      >
+        <a
+          href="tel:030 - 120 822 60"
+        >
+          <Paragraph
+            className=""
+            id=""
+            lead={false}
+          >
+            030 - 120 822 60
+          </Paragraph>
+          <small
+            className="phoneTimes"
+          >
+            global.business-hours
+          </small>
+        </a>
+      </li>
+      <li
+        className="contactWrapper mail"
+      >
+        <a
+          href="mailto:support@fairr.de"
+        >
+          <Paragraph
+            className=""
+            id=""
+            lead={false}
+          >
+            support@fairr.de
+          </Paragraph>
+        </a>
+      </li>
+      <li
+        className="langSelectorWrapper"
+      >
+        <div
+          data-lang-hover=""
+        >
+          <div
+            className="langSelection"
+          />
+          <button
+            data-active={false}
+            data-lang="de"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            de
+          </button>
+          <button
+            data-active={false}
+            data-lang="en"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            en
+          </button>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;

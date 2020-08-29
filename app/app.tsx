@@ -16,6 +16,9 @@ import Router from './Router';
 import '!file-loader?name=[name].[ext]!../assets/images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 
+// import styles
+import './app.module.scss';
+
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
