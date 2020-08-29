@@ -41,7 +41,6 @@ module.exports = {
   transform: {
     '^.+\\.(ts(x?)|js)$': 'ts-jest',
   },
-  transformIgnorePatterns: ['/node_modules/(?!@raisin)'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 };

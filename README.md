@@ -1,25 +1,5 @@
 # Frontend Template
 
-## SonarQube Analysis - Current project status
-
-_You need to be logged in to [SonarQube](https://sonarqube.raisin.systems/) in order to be able to view the badges_
-**Add your project to sonarqube and then link the badges below**
-
-[![Quality gate]()]()
-
-[![Bugs]()]()
-[![Code Smells]()]()
-[![Vulnerabilities]()]()
-
-[![Coverage]()]()
-[![Duplicated Lines (%)]()]()
-[![Technical Debt]()]()
-
-[![Security Rating]()]()
-[![Reliability Rating]()]()
-[![Maintainability Rating]()]()
-[![Lines of Code]()]()
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -134,12 +114,8 @@ You can also run the tests only for one component in watch mode directly by appe
 
 ## Opening a Merge Request
 
-_To better familiarize yourself with the Code Reviews process at Raisin, please head to the [Frontend Code Reviews](https://raisin-jira.atlassian.net/wiki/spaces/ENGPEOP/pages/141951081/Frontend+Code+Reviews) doc._
-
-WIP: We use a template for generating the description of our MR's. You can find it in the templates when opening an MR.
+We use a template for generating the description of our MR's. You can find it in the templates when opening an MR.
 We also make use of labels for MR. Please tag your MR's with the coresponding one.
-
-As a final step, post a message in the #fe-code-reviews channel with a link to your MR and a short description. You can read more about this [here](https://raisin-jira.atlassian.net/wiki/spaces/ENGPEOP/pages/2064674/Frontend+chapter+slack+channels)
 
 ## CI Pipeline
 
