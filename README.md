@@ -48,13 +48,13 @@ _A step by step series of examples that tell you how to get the development env 
 Clone this repo in your prefered location:
 
 ```console
-~# git clone git@gitlab.raisin.systems:eng/pp-frontend.git
+~# git clone git@github.com:davidcoroian/path-finder.git
 ```
 
 Navigate to it and install required dependencies:
 
 ```console
-~# cd pp-frontend
+~# cd path-finder
 ~# npm install
 ```
 
@@ -143,7 +143,7 @@ As a final step, post a message in the #fe-code-reviews channel with a link to y
 
 ## CI Pipeline
 
-For every new push to `master` or a merge request, the GitLab CI Pipeline is triggered. You can see the current configuration of the pipeline in the [.gitlab-ci.yml](https://gitlab.raisin.systems/frontend/pp-frontend/blob/master/.gitlab-ci.yml) file.
+For every new push to `master` or a merge request, the GitLab CI Pipeline is triggered. You can see the current configuration of the pipeline in the [.gitlab-ci.yml](https://github.com/davidcoroian/path-finder/blob/master/.gitlab-ci.yml) file.
 There are currently three jobs which are being executed in the pipeline:
 
 - **Test:** will run all unit and snapshot tests and notify with a message in case of failure. It is the first job because this step is the one most likely to fail. The Test job also generates the `coverage` report which is later used by SonarQube
@@ -177,14 +177,13 @@ _Information about some of the scripts that might come in handy._
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://gitlab.raisin.systems/eng/pp-frontend/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/davidcoroian/path-finder/tags).
 
 ## Authors
 
-- **David** - [Gitlab profile](https://gitlab.raisin.systems/david.coroian)
-- **Suat** - [Gitlab profile](https://gitlab.raisin.systems/suat)
+- **David** - [Gitlab profile](https://github.com/davidcoroian)
 
-See also the list of [contributors](https://gitlab.raisin.systems/eng/pp-frontend/graphs/master) who participated in this project.
+See also the list of [contributors](https://github.com/davidcoroian/path-finder/graphs/contributors) who participated in this project.
 
 ## Bundle analysis
 

@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   presets: [
     [
@@ -17,7 +15,7 @@ module.exports = {
   ],
   env: {
     production: {
-      only: ['app', path.resolve(process.cwd(), 'node_modules/@raisin/ui-lib/src')],
+      only: ['app'],
       plugins: [
         '@babel/plugin-transform-react-inline-elements',
         '@babel/plugin-transform-react-constant-elements',

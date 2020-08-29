@@ -35,7 +35,6 @@ module.exports = {
     '@common/(.*)$': resolve(__dirname, './app/common/$1'),
     '@pages/(.*)$': resolve(__dirname, './app/pages/$1'),
     '@images/(.*)$': resolve(__dirname, './assets/images/$1'),
-    'uilib/(.*)$': resolve(__dirname, './node_modules/@raisin/ui-lib/$1'),
   },
   setupFilesAfterEnv: ['<rootDir>/internals/testing/test-bundler.js'],
   testRegex: '.*\\.test\\.(js|ts(x?))$',

@@ -14,8 +14,7 @@
       "@store/*": ["app/store/*"],
       "@utils/*": ["app/utils/*"],
       "@hooks/*": ["app/hooks/*"],
-      "@images/*": ["assets/images/*"],
-      "uilib/*": ["node_modules/@raisin/ui-lib/*"]
+      "@images/*": ["assets/images/*"]
     },
     "jsx": "react", // process JSX
     "lib": ["dom", "es5", "es6", "es7", "es2017"],

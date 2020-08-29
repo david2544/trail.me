@@ -24,9 +24,8 @@ module.exports = options => ({
     rules: [
       {
         test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
-        include: [path.resolve(process.cwd(), 'node_modules/@raisin/ui-lib/src'), /app/],
-        // exclude node_modules except ui-lib
-        exclude: /node_modules\/(?!@raisin\/ui-lib\/).*/,
+        include: [/app/],
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: options.babelQuery,
@@ -40,8 +39,7 @@ module.exports = options => ({
       {
         // Preprocess our own .css files
         test: /\.scss$/,
-        // exclude node_modules except ui-lib
-        exclude: /node_modules\/(?!@raisin\/ui-lib\/)/,
+        exclude: /node_modules/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -136,7 +134,6 @@ module.exports = options => ({
       '@store': path.resolve(process.cwd(), './app/store'),
       '@common': path.resolve(process.cwd(), './app/common'),
       '@images': path.resolve(process.cwd(), './assets/images'),
-      uilib: path.resolve(process.cwd(), './node_modules/@raisin/ui-lib'),
       'react-dom': '@hot-loader/react-dom',
     },
   },
