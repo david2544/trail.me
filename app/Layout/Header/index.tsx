@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { History } from 'history';
 import classnames from 'classnames';
 import useScroll from '@app/hooks/useScroll';
 import DarkModeToggle from 'react-dark-mode-toggle';
+import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
 import { LINKS } from '@utils/constants';
 import Container from '@common/Container';
 import FairrLogo from '@images/logo_placeholder.png';
@@ -24,7 +25,8 @@ const Header: React.FC<HeaderProps> = ({
   toggleMenu,
   menuOpen,
 }) => {
-  const [isDarkMode, setIsDarkMode] = useState(() => false);
+  const { isDarkMode, toggleDarkMode } = useToggleDarkMode();
+
   const { scrollPosition } = useScroll();
 
   return (
@@ -87,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({
           </li>
           <li className={styles.menuItemWrapper}>
             <div className={`${styles.menuItem} ${styles.darkModeToggle}`}>
-              <DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={60} />
+              <DarkModeToggle onChange={toggleDarkMode} checked={isDarkMode} size={60} />
             </div>
           </li>
         </ul>

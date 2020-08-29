@@ -395,3 +395,46 @@
     }
   }
 }
+
+.darkModeHeader {
+  transition: background-color 1s ease;
+  color: black;
+
+  .logoContainer {
+    transition: background-color 1s ease;
+    background-color: black;
+  }
+
+  .logoWrapper:before {
+    transition: background-color 1s ease;
+    background-color: black;
+  }
+
+  .logoWrapper {
+    transition: background-color 1s ease;
+    background-color: black;
+
+    .logo {
+      transition: background-color 1s ease;
+      background-color: black;
+    }
+  }
+
+  .menuWrapper > .menuItemWrapper > .subNav > ul {
+    transition: background-color 1s ease;
+    background-color: black;
+
+    a {
+      transition: background-color 1s ease;
+      color: white;
+    }
+  }
+
+  .menuWrapper > .menuItemWrapper > .subNav {
+    &:before,
+    &:after {
+      transition: background-color 1s ease;
+      background-color: black;
+    }
+  }
+}

@@ -1,21 +1,21 @@
 import ActionTypes from '@store/actionTypes';
-import languageProviderReducer from '.';
+import themeProviderReducer from '.';
 
-describe('languageProviderReducer', () => {
+describe('themeProviderReducer', () => {
   it('returns the initial state', () => {
-    expect(languageProviderReducer(undefined, {} as any)).toEqual({
-      locale: 'en',
+    expect(themeProviderReducer(undefined, {} as any)).toEqual({
+      darkMode: false,
     });
   });
 
   it('changes the locale', () => {
     expect(
-      languageProviderReducer(undefined, {
-        type: ActionTypes.CHANGE_LOCALE,
-        payload: 'de',
+      themeProviderReducer(undefined, {
+        type: ActionTypes.CHANGE_DARK_MODE,
+        payload: true,
       }),
     ).toEqual({
-      locale: 'de',
+      darkMode: true,
     });
   });
 });

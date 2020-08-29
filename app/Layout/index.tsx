@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import classnames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import useOnClickOutside from '@app/hooks/useClickOutside';
+import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
 import Header from './Header';
 import styles from './styles.module.scss';
 
@@ -11,7 +12,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const history = useHistory();
-
+  const { isDarkMode } = useToggleDarkMode();
   // Create a ref that we add to the element for which we want to detect outside clicks
   const ref = useRef();
   // State for our modal
@@ -33,7 +34,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
         {menuOpen && <div className={styles.menuSidebarActive} />}
       </div>
-      <div className={styles.bodyContainer}>{children}</div>
+      <div className={classnames(styles.bodyContainer, { [styles.bodyDarkMode]: isDarkMode })}>
+        {children}
+      </div>
     </div>
   );
 };

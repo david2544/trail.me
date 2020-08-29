@@ -3,7 +3,7 @@ import * as actions from '@store/ui/actions';
 
 /* --- STATE --- */
 interface UIState {
-  readonly locale: string;
+  readonly darkMode: boolean;
 }
 
 /* --- ACTIONS --- */
