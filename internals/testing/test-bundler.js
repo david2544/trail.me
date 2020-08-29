@@ -1,0 +1,6 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });

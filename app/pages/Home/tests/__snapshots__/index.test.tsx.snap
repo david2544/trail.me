@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> should match snapshot 1`] = `
+<div
+  className="home"
+>
+  <div
+    data-lang-hover=""
+  >
+    <div
+      className="langSelection"
+    />
+    <a
+      data-active={false}
+      data-lang="de"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      de
+    </a>
+    <a
+      data-active={false}
+      data-lang="en"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      en
+    </a>
+  </div>
+</div>
+`;
