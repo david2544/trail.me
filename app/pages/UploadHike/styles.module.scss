@@ -1,0 +1,32 @@
+@import '@Layout/Styles/styles.scss';
+
+.uploadHike {
+  margin-top: 190px;
+
+  .heading {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .map {
+    height: 700px;
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      display: flex;
+      margin: 10px 0;
+    }
+  }
+}
+
+.darkModeUploadHike {
+  color: $dark-text-color;
+  .heading {
+    color: $dark-text-color;
+    transition: color 1s ease;
+  }
+}

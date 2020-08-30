@@ -24,6 +24,9 @@ module.exports = {
   ignorePatterns: ['**/__mocks__/**/*'],
   rules: {
     'jsx-no-lambda': 0,
+    'object-curly-newline': 0,
+    'function-paren-newline': 0,
+    'react/jsx-one-expression-per-line': 0,
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/no-empty-interface': 0,
     'object-shorthand': [0, 'never'],
@@ -105,7 +108,6 @@ module.exports = {
     'react/require-extension': 0,
     'react/self-closing-comp': 0,
     'react/sort-comp': 0,
-    'object-curly-spacing': ['error', 'always', { arraysInObjects: true }],
     'import/extensions': [
       'error',
       'ignorePackages',

@@ -1,68 +1,91 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classnames from 'classnames';
 import Container from '@common/Container';
 import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
 import ReactLeafletKml from 'react-leaflet-kml';
-// eslint-disable-next-line object-curly-newline
 import { Map, TileLayer } from 'react-leaflet';
+import Firebase from 'firebase';
 import styles from './styles.module.scss';
 
-interface HikeCardProps {}
+export interface IHikeData {
+  name: string;
+  distance: string;
+  duration: string;
+  ascent: string;
+  descent: string;
+  date: Date;
+  start: string;
+  finish: string;
+  country: string;
+  description: string;
+  fileName: string;
+}
+interface IHikeCard {
+  hikeData: IHikeData;
+}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const HikeCard: React.FC<HikeCardProps> = props => {
+const HikeCard: React.FC<IHikeCard> = ({
+  hikeData: {
+    name,
+    distance,
+    duration,
+    ascent,
+    descent,
+    date,
+    start,
+    finish,
+    country,
+    fileName,
+    description,
+  },
+}) => {
   const { isDarkMode } = useToggleDarkMode();
   const [kml, setKml] = React.useState<Document>();
 
-  React.useEffect(() => {
-    fetch('http://localhost:3000/api/kml')
-      .then(res => res.text())
-      .then(kmlText => {
-        const parser = new DOMParser();
-        const kmlData = parser.parseFromString(kmlText, 'text/xml');
-        setKml(kmlData);
-      });
+  useEffect(() => {
+    const ref = Firebase.storage().ref();
+    ref
+      .child(fileName)
+      .getDownloadURL()
+      .then(url =>
+        fetch(url)
+          .then(res => res.text())
+          .then(kmlText => {
+            const parser = new DOMParser();
+            const kmlData = parser.parseFromString(kmlText, 'text/xml');
+            setKml(kmlData);
+          }),
+      );
   }, []);
 
   return (
     <Container>
       <div className={classnames(styles.hikeCard, { [styles.darkModeHikeCard]: isDarkMode })}>
         <div className="row">
-          <div id="hikemap" className={styles.map}>
-            <Map className={styles.map} center={[52.705, 13.34]} zoom={13}>
-              <TileLayer
-                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              {kml && <ReactLeafletKml kml={kml} />}
-            </Map>
-          </div>
+          <Map className={styles.map} center={[52.705, 13.34]} zoom={13}>
+            <TileLayer
+              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {kml && <ReactLeafletKml kml={kml} />}
+          </Map>
           <div className={styles.contentWrapper}>
             <div className="row">
               <div className="col-xs-12">
-                <h3>Hike name</h3>
+                <h3>{name && name}</h3>
               </div>
-              <div className="col-xs-7">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industrys standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum
-              </div>
+              <div className="col-xs-7">{description && description}</div>
               <div className="col-xs-offset-1 col-xs-4">
                 <ul>
-                  <li>Distance: 34km</li>
-                  <li>Duration: 8.5h</li>
-                  <li>Elevation gain: 1100m</li>
-                  <li>Elevation loss: 773m</li>
+                  <li>Distance: {distance} km</li>
+                  <li>Duration: {duration} h</li>
+                  <li>Elevation gain: {ascent} m</li>
+                  <li>Elevation loss: {descent} m</li>
                   <hr className={styles.hr} />
-                  <li>Date: 11th Sept 2020</li>
-                  <li>Start: Chamonix</li>
-                  <li>Finish: Courmayeour</li>
-                  <li>Country: France</li>
+                  <li>Date: {date}</li>
+                  <li>Start location: {start}</li>
+                  <li>Finish location: {finish}</li>
+                  <li>Country: {country}</li>
                 </ul>
               </div>
             </div>

@@ -8,7 +8,6 @@ import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
 import { LINKS } from '@utils/constants';
 import Container from '@common/Container';
 import Logo from '@images/logo.png';
-import { isMenuItemActive } from '../utils';
 import styles from './styles.module.scss';
 
 interface HeaderProps {
@@ -17,13 +16,7 @@ interface HeaderProps {
   menuOpen: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  history: {
-    location: { pathname },
-  },
-  toggleMenu,
-  menuOpen,
-}) => {
+const Header: React.FC<HeaderProps> = ({ toggleMenu, menuOpen }) => {
   const { isDarkMode, toggleDarkMode } = useToggleDarkMode();
 
   const { scrollPosition } = useScroll();
@@ -61,9 +54,10 @@ const Header: React.FC<HeaderProps> = ({
 
       <nav className={classnames('container', styles.navContainer)}>
         <ul className={styles.menuWrapper}>
+          {/* TODO: fix these clases */}
           <li
             className={classnames(styles.menuItemWrapper, {
-              [styles.active]: isMenuItemActive.isOnTransferPages(pathname),
+              [styles.active]: true,
             })}
           >
             {/* <Link to={LINKS.switch.general} className={styles.menuItem}>
@@ -76,10 +70,14 @@ const Header: React.FC<HeaderProps> = ({
                 ))}
               </ul>
             </div> */}
+            <Link to={LINKS.uploadHike} className={styles.menuItem}>
+              Upload new hike
+            </Link>
           </li>
+          {/* TODO: fix these clases */}
           <li
             className={classnames(styles.menuItemWrapper, {
-              [styles.active]: isMenuItemActive.isOnSecurityPage(pathname),
+              [styles.active]: true,
             })}
           >
             {/* <Link to={LINKS.security} className={styles.menuItem}>

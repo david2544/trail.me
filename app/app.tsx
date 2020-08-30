@@ -7,6 +7,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from '@app/utils/history';
+import Firebase from 'firebase';
+import config from '@app/utils/firebaseConfig';
 
 // Import root app
 import configureStore from '@store/configureStore';
@@ -23,6 +25,7 @@ import './app.module.scss';
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
+Firebase.initializeApp(config);
 
 const ConnectedApp = () => (
   <Provider store={store}>
