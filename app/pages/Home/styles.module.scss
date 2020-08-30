@@ -1,5 +1,33 @@
+@import '../../Layout/Styles/styles.scss';
+
 .home {
+  position: relative;
+
   .image {
-    width: 100%;
+    background-image: url('../../../assets/images/headerImage.jpg');
+    background-repeat: no-repeat;
+    transition: background-image 1s ease;
+    background-size: contain;
+    height: 43vw;
+  }
+
+  .heading {
+    position: absolute;
+    font-size: 50px;
+    top: 13vw;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+}
+
+.darkModeHome {
+  .image {
+    background-image: url('../../../assets/images/darkModeHeaderImage.jpg');
+    transition: background-image 1s ease;
+  }
+
+  .heading {
+    color: $dark-text-color;
   }
 }
