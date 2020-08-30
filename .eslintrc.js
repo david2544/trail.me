@@ -21,6 +21,7 @@ module.exports = {
     },
     project: './tsconfig.eslint.json',
   },
+  ignorePatterns: ['**/__mocks__/**/*'],
   rules: {
     'jsx-no-lambda': 0,
     '@typescript-eslint/interface-name-prefix': 0,

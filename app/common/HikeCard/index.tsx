@@ -2,8 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 import Container from '@common/Container';
 import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
+import ReactLeafletKml from 'react-leaflet-kml';
 // eslint-disable-next-line object-curly-newline
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer } from 'react-leaflet';
 import styles from './styles.module.scss';
 
 interface HikeCardProps {}
@@ -11,21 +12,29 @@ interface HikeCardProps {}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const HikeCard: React.FC<HikeCardProps> = props => {
   const { isDarkMode } = useToggleDarkMode();
-  const position = [51.505, -0.09];
+  const [kml, setKml] = React.useState<Document>();
+
+  React.useEffect(() => {
+    fetch('http://localhost:3000/api/kml')
+      .then(res => res.text())
+      .then(kmlText => {
+        const parser = new DOMParser();
+        const kmlData = parser.parseFromString(kmlText, 'text/xml');
+        setKml(kmlData);
+      });
+  }, []);
 
   return (
     <Container>
       <div className={classnames(styles.hikeCard, { [styles.darkModeHikeCard]: isDarkMode })}>
         <div className="row">
           <div id="hikemap" className={styles.map}>
-            <Map className={styles.map} center={position} zoom={13}>
+            <Map className={styles.map} center={[52.705, 13.34]} zoom={13}>
               <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={position}>
-                <Popup>A pretty CSS3 popup. Easily customizable.</Popup>
-              </Marker>
+              {kml && <ReactLeafletKml kml={kml} />}
             </Map>
           </div>
           <div className={styles.contentWrapper}>
