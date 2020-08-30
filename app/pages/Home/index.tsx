@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     <div className={classnames(styles.home, { [styles.darkModeHome]: isDarkMode })}>
       <div className={styles.image} />
       <Container>
-        <h1 className={styles.heading}>An archive of past hikes</h1>
+        <h1 className={styles.heading}>My past, on the trail</h1>
         {Object.keys(hikesData).map(hikeData => (
           <HikeCard hikeData={hikesData[hikeData]} />
         ))}

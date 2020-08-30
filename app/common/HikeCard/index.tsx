@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 export interface IHikeData {
   name: string;
   distance: string;
-  duration: string;
+  time: string;
   ascent: string;
   descent: string;
   date: Date;
@@ -19,6 +19,7 @@ export interface IHikeData {
   country: string;
   description: string;
   fileName: string;
+  viewport: { center: string[]; zoom: string };
 }
 interface IHikeCard {
   hikeData: IHikeData;
@@ -28,7 +29,7 @@ const HikeCard: React.FC<IHikeCard> = ({
   hikeData: {
     name,
     distance,
-    duration,
+    time,
     ascent,
     descent,
     date,
@@ -37,6 +38,7 @@ const HikeCard: React.FC<IHikeCard> = ({
     country,
     fileName,
     description,
+    viewport,
   },
 }) => {
   const { isDarkMode } = useToggleDarkMode();
@@ -44,6 +46,7 @@ const HikeCard: React.FC<IHikeCard> = ({
 
   useEffect(() => {
     const ref = Firebase.storage().ref();
+    console.log(fileName);
     ref
       .child(fileName)
       .getDownloadURL()
@@ -62,7 +65,7 @@ const HikeCard: React.FC<IHikeCard> = ({
     <Container>
       <div className={classnames(styles.hikeCard, { [styles.darkModeHikeCard]: isDarkMode })}>
         <div className="row">
-          <Map className={styles.map} center={[52.705, 13.34]} zoom={13}>
+          <Map className={styles.map} center={viewport.center} zoom={viewport.zoom}>
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -78,7 +81,7 @@ const HikeCard: React.FC<IHikeCard> = ({
               <div className="col-xs-offset-1 col-xs-4">
                 <ul>
                   <li>Distance: {distance} km</li>
-                  <li>Duration: {duration} h</li>
+                  <li>Duration: {time} h</li>
                   <li>Elevation gain: {ascent} m</li>
                   <li>Elevation loss: {descent} m</li>
                   <hr className={styles.hr} />
