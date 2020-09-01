@@ -2,7 +2,6 @@
 
 const express = require('express');
 const logger = require('./logger');
-const apiMocker = require('connect-api-mocker');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
