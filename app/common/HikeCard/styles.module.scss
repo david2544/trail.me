@@ -3,47 +3,47 @@
 .hikeCard {
   margin: 60px 0 30px;
   border-radius: 7px;
+  position: relative;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease-in-out;
+
+  .heading {
+    margin: 5px 20px;
+  }
+
+  .crosshairIcon {
+    margin-top: 18px;
+    font-size: 25px;
+    cursor: pointer;
+  }
 
   .map {
     height: 500px;
   }
 
-  .contentWrapper {
-    padding: 30px;
-  }
+  .statsWrapper {
+    text-align: center;
+    border-bottom: 1px solid #d7d7d7;
 
-  .image {
-    max-height: 100%;
-    max-width: 100%;
-    border-radius: 5px;
-  }
-
-  ul {
-    list-style-type: none;
-
-    li {
-      color: $light-text-color;
-    }
-
-    li::before {
-      content: '\2022';
-      color: $primary;
-      font-weight: bold;
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
+    & > div {
+      padding: 20px 0;
     }
   }
 
-  .hr {
-    width: 50%;
-    margin: 20px 0;
-    border: 1px solid $primary;
+  .detailsWrapper {
+    margin: 20px;
   }
 
-  h3 {
-    color: $primary;
+  .icon {
+    margin-right: 15px;
+  }
+}
+
+.hikeCard {
+  &:hover,
+  &:focus {
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    transform: translate3d(0px, -1px, 0px);
   }
 }
 
@@ -52,8 +52,7 @@
   transition: background-color 1s ease;
   color: $dark-text-color;
 
-  ul > li {
-    color: $dark-text-color;
-    transition: background-color 1s ease;
+  .statsWrapper {
+    border: none;
   }
 }

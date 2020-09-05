@@ -1,4 +1,5 @@
 {
+  "homepage": "http://davidcoroian.github.io/path-finder",
   "name": "path-finder",
   "version": "0.0.1",
   "description": "Pension Products React frontend",
@@ -38,7 +39,9 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "prettify": "prettier . --write",
-    "size": "npm run build && size-limit"
+    "size": "npm run build && size-limit",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -65,10 +68,14 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.30",
+    "@fortawesome/free-solid-svg-icons": "5.14.0",
+    "@fortawesome/react-fontawesome": "0.1.11",
     "@hot-loader/react-dom": "16.13.0",
     "classnames": "2.2.6",
     "connected-react-router": "6.8.0",
-    "history": "5.0.0",
+    "firebase": "7.19.1",
+    "history": "4.10.1",
     "leaflet": "1.6.0",
     "mini-css-extract-plugin": "0.9.0",
     "react": "16.13.1",
@@ -77,6 +84,7 @@
     "react-dom": "16.13.1",
     "react-hot-loader": "4.12.21",
     "react-leaflet": "2.7.0",
+    "react-leaflet-kml": "1.0.4",
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
@@ -132,6 +140,7 @@
     "express": "4.17.1",
     "file-loader": "6.0.0",
     "fork-ts-checker-webpack-plugin": "5.1.0",
+    "gh-pages": "3.1.0",
     "html-loader": "1.3.0",
     "html-webpack-plugin": "4.3.0",
     "husky": "4.2.5",

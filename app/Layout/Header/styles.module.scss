@@ -128,16 +128,22 @@
       background: none;
       border: none;
       outline: inherit;
-      padding: 20px 5px;
+      padding: 32px 5px;
       display: inline-block;
       color: inherit;
       position: relative;
+      text-decoration: none;
       z-index: 2;
+      color: $light-text-color;
 
       &:hover,
       &:focus {
         text-decoration: underline;
       }
+    }
+
+    a.menuItem {
+      padding: 35px 5px;
     }
 
     .menuItemWrapper {
@@ -407,6 +413,10 @@
   }
 
   .navContainer {
+    .menuWrapper > .menuItemWrapper > .menuItem {
+      color: $dark-text-color;
+    }
+
     @media (max-width: 767px) {
       background-color: $dark-heading;
       color: $primary;

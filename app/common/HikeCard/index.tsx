@@ -1,60 +1,120 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import Container from '@common/Container';
-import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
-// eslint-disable-next-line object-curly-newline
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import useToggleDarkMode from '@hooks/useToggleDarkMode';
+import useFetchKml from '@hooks/useFetchKml';
+import ReactLeafletKml from 'react-leaflet-kml';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faRuler,
+  faStopwatch,
+  faSortUp,
+  faSortDown,
+  faCrosshairs,
+} from '@fortawesome/free-solid-svg-icons';
+import { Map, TileLayer } from 'react-leaflet';
 import styles from './styles.module.scss';
 
-interface HikeCardProps {}
+export interface IHikeData {
+  name: string;
+  distance: string;
+  time: string;
+  ascent: string;
+  descent: string;
+  date: Date;
+  start: string;
+  finish: string;
+  country: string;
+  description: string;
+  fileName: string;
+  viewport: { center: string[]; zoom: string };
+}
+interface IHikeCard {
+  hikeData: IHikeData;
+}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const HikeCard: React.FC<HikeCardProps> = props => {
+const HikeCard: React.FC<IHikeCard> = ({
+  hikeData: {
+    name,
+    distance,
+    time,
+    ascent,
+    descent,
+    date,
+    start,
+    finish,
+    country,
+    fileName,
+    description,
+    viewport,
+  },
+}) => {
   const { isDarkMode } = useToggleDarkMode();
-  const position = [51.505, -0.09];
+  const [originalViewport, setViewport] = useState<object | null>(null);
+  const { kml } = useFetchKml(fileName);
 
   return (
     <Container>
       <div className={classnames(styles.hikeCard, { [styles.darkModeHikeCard]: isDarkMode })}>
         <div className="row">
-          <div id="hikemap" className={styles.map}>
-            <Map className={styles.map} center={position} zoom={13}>
+          <div className={`col-xs-12 ${styles.heading}`}>
+            <div className="col-xs-11">
+              <h3>{name && name}</h3>
+            </div>
+            <div className="col-xs-1">
+              <FontAwesomeIcon
+                onClick={() => setViewport({})}
+                className={styles.crosshairIcon}
+                icon={faCrosshairs}
+              />
+            </div>
+          </div>
+          <div className="col-xs-12">
+            <Map
+              className={styles.map}
+              center={viewport.center}
+              zoom={viewport.zoom}
+              viewport={originalViewport}
+            >
               <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={position}>
-                <Popup>A pretty CSS3 popup. Easily customizable.</Popup>
-              </Marker>
+              {kml && <ReactLeafletKml kml={kml} />}
             </Map>
           </div>
-          <div className={styles.contentWrapper}>
-            <div className="row">
-              <div className="col-xs-12">
-                <h3>Hike name</h3>
+          <div className={`col-xs-12 ${styles.statsWrapper}`}>
+            <div className="col-xs-3">
+              <FontAwesomeIcon className={styles.icon} icon={faRuler} />
+              Distance: {distance} km
+            </div>
+            <div className="col-xs-3">
+              <FontAwesomeIcon className={styles.icon} icon={faStopwatch} />
+              Duration: {time} h
+            </div>
+            <div className="col-xs-3">
+              <FontAwesomeIcon className={styles.icon} icon={faSortUp} />
+              Elevation gain: {ascent} m
+            </div>
+            <div className="col-xs-3">
+              <FontAwesomeIcon className={styles.icon} icon={faSortDown} />
+              Elevation loss: {descent} m
+            </div>
+          </div>
+          <div className={`${styles.detailsWrapper} col-xs-12`}>
+            <div className="col-xs-6">{description && description}</div>
+            <div className="col-xs-offset-2 col-xs-4">
+              <div>
+                <strong>Date:</strong> {date}
               </div>
-              <div className="col-xs-7">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industrys standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum
+              <div>
+                <strong>Start location:</strong> {start}
               </div>
-              <div className="col-xs-offset-1 col-xs-4">
-                <ul>
-                  <li>Distance: 34km</li>
-                  <li>Duration: 8.5h</li>
-                  <li>Elevation gain: 1100m</li>
-                  <li>Elevation loss: 773m</li>
-                  <hr className={styles.hr} />
-                  <li>Date: 11th Sept 2020</li>
-                  <li>Start: Chamonix</li>
-                  <li>Finish: Courmayeour</li>
-                  <li>Country: France</li>
-                </ul>
+              <div>
+                <strong>Finish location:</strong> {finish}
+              </div>
+              <div>
+                <strong>Country:</strong> {country}
               </div>
             </div>
           </div>
