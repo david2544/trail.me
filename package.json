@@ -1,4 +1,5 @@
 {
+  "homepage": "http://davidcoroian.github.io/path-finder",
   "name": "path-finder",
   "version": "0.0.1",
   "description": "Pension Products React frontend",
@@ -38,7 +39,9 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "prettify": "prettier . --write",
-    "size": "npm run build && size-limit"
+    "size": "npm run build && size-limit",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -137,6 +140,7 @@
     "express": "4.17.1",
     "file-loader": "6.0.0",
     "fork-ts-checker-webpack-plugin": "5.1.0",
+    "gh-pages": "3.1.0",
     "html-loader": "1.3.0",
     "html-webpack-plugin": "4.3.0",
     "husky": "4.2.5",
