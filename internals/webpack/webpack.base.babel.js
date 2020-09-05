@@ -130,6 +130,7 @@ module.exports = options => ({
       '@app': path.resolve(process.cwd(), './app'),
       '@pages': path.resolve(process.cwd(), './app/pages'),
       '@utils': path.resolve(process.cwd(), './app/utils'),
+      '@hooks': path.resolve(process.cwd(), './app/hooks'),
       '@Layout': path.resolve(process.cwd(), './app/Layout'),
       '@store': path.resolve(process.cwd(), './app/store'),
       '@common': path.resolve(process.cwd(), './app/common'),

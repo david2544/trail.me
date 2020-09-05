@@ -23,9 +23,15 @@ const Home: React.FC = () => {
       <div className={styles.image} />
       <Container>
         <h1 className={styles.heading}>My past, on the trail.</h1>
-        {Object.keys(hikesData).map(hikeData => (
-          <HikeCard hikeData={hikesData[hikeData]} />
-        ))}
+        {Object.keys(hikesData)
+          .sort((a, b) => {
+            a = a.split('-').join('');
+            b = b.split('-').join('');
+            return b.localeCompare(a);
+          })
+          .map(hikeData => (
+            <HikeCard hikeData={hikesData[hikeData]} />
+          ))}
       </Container>
     </div>
   );
