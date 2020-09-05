@@ -2,7 +2,7 @@ import ActionTypes from '@store/actionTypes';
 import { UIActions, UIState } from '@store/ui/actions/types';
 
 export const initialState: UIState = {
-  darkMode: true,
+  darkMode: false,
 };
 
 export default (state: UIState = initialState, action: UIActions): UIState => {

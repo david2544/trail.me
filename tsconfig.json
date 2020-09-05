@@ -30,6 +30,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "strictNullChecks": false,
     "noUnusedLocals": false,
     "strict": true,
     "strictFunctionTypes": false,
