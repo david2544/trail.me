@@ -23,7 +23,7 @@ const Router: React.FC = () => {
       <ThemeProvider theme={darkTheme}>
         <Layout>
           <Switch>
-            <Route path="/home" exact render={() => <Home />} />
+            <Route path="/" exact render={() => <Home />} />
             <Route path="/uploadHike" exact render={() => <UploadHike />} />
             {/* [INSERT NEW ROUTE ABOVE] < Needed for generating containers seamlessly */}
           </Switch>

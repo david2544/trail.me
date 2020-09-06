@@ -31,7 +31,7 @@ export const onFileUpload = ({ rawKml, history, hikeData }) => {
     .ref()
     .child('hikeEntries')
     .child(hikeData.date)
-    .set({ ...hikeData }, () => history.push('/home'));
+    .set({ ...hikeData }, () => history.push('/'));
 };
 
 export const resizeMap = mapRef => {

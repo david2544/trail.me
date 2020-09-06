@@ -15,7 +15,7 @@ export const FAIRR_PRODUCTS = {
 
 // WIP here. Links will probably be handled differently
 export const LINKS = {
-  home: '/home',
+  home: '/',
   uploadHike: '/uploadHike',
 };
 
