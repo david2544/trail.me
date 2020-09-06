@@ -5,8 +5,10 @@ import ReactLeafletKml from 'react-leaflet-kml';
 import { Map, TileLayer } from 'react-leaflet';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
 import { ArrowBack } from '@material-ui/icons';
+// import { useForm } from 'react-hook-form';
 import Container from '@common/Container';
-import { Button, TextField } from '@material-ui/core';
+import LoginModal from '@common/LoginModal';
+import { Button, TextField, TextareaAutosize } from '@material-ui/core';
 import { resizeMap, onFileUpload, onFileChange, inputFieldsData1, inputFieldsData2 } from './utils';
 import styles from './styles.module.scss';
 
@@ -30,6 +32,8 @@ const UploadHike: React.FC = () => {
   const [kml, setKml] = useState<Document>();
   const [rawKml, setRawKml] = useState<any>();
   const [isSmallMap, toggleSmallMap] = useState(false);
+  const [open, setLoginModalState] = useState(false);
+  // const { register, handleSubmit, errors } = useForm<Inputs>();
   const [hikeData, setHikeData] = useState<any>({});
   const history = useHistory();
   const mapRef = useRef();
@@ -112,11 +116,12 @@ const UploadHike: React.FC = () => {
                   <small className={styles.fileUploadNote}>only .kml file type supported</small>
                 </label>
               </div>
-              <div className="col-md-4 col-sm-12">
-                <TextField
-                  multiline
-                  className="col-md-12 col-sm-8 col-xs-12"
-                  label="Description:"
+              <div className={`col-md-4 col-sm-12 ${styles.bottomMarginMobile}`}>
+                <TextareaAutosize
+                  aria-label="hike-description"
+                  rowsMin={5}
+                  placeholder="Describe how was the hike"
+                  className="col-md-12 col-sm-7 col-xs-12"
                   onChange={e => {
                     setHikeData({ ...hikeData, description: e.target.value });
                   }}
@@ -152,13 +157,18 @@ const UploadHike: React.FC = () => {
               variant="contained"
               color="secondary"
               type="button"
-              onClick={() => onFileUpload({ rawKml, history, hikeData })}
+              onClick={() => setLoginModalState(true)}
             >
               Upload
             </Button>
           </div>
         </Container>
       )}
+      <LoginModal
+        handleClose={() => setLoginModalState(false)}
+        open={open}
+        onSubmitSuccess={() => onFileUpload({ rawKml, history, hikeData })}
+      />
     </div>
   );
 };

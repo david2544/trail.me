@@ -123,7 +123,7 @@ module.exports = require('./webpack.base.babel')({
     ...extraPlugins,
   ],
 
-  // performance: {
-  //   assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
-  // },
+  performance: {
+    assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+  },
 });

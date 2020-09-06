@@ -89,7 +89,6 @@
     "react-leaflet": "2.7.0",
     "react-leaflet-kml": "1.0.4",
     "react-redux": "7.2.1",
-    "react-responsive-modal": "5.1.0",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
     "typesafe-actions": "5.1.0"

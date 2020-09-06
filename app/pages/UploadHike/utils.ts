@@ -108,13 +108,13 @@ export const inputFieldsData2 = [
   },
   {
     text: 'Start location:',
-    inputValue: 'start-location',
+    inputValue: 'start',
     type: 'text',
     className: 'col-xs-5',
   },
   {
     text: 'Finish location:',
-    inputValue: 'finish-location',
+    inputValue: 'finish',
     type: 'text',
     className: 'col-xs-5 col-xs-offset-1',
   },

@@ -124,7 +124,8 @@
     margin: 10px 0 9px 25%;
     display: flex;
 
-    .menuItem {
+    .menuItem,
+    .loginButton {
       background: none;
       border: none;
       outline: inherit;
@@ -140,6 +141,10 @@
       &:focus {
         text-decoration: underline;
       }
+    }
+
+    .loginButton {
+      padding: 25px 5px;
     }
 
     a.menuItem {
