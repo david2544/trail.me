@@ -45,6 +45,7 @@ const HikeCard: React.FC<IHikeCard> = ({
   const { isDarkMode } = useToggleDarkMode();
   const [originalViewport, setViewport] = useState<object | null>(null);
   const { width } = useWindowSize();
+  const isTabletOrMobile = width < 992;
   const isMobile = width < 768;
   const { kml } = useFetchKml(fileName);
 
@@ -76,19 +77,19 @@ const HikeCard: React.FC<IHikeCard> = ({
         <div className={`col-xs-12 ${styles.statsWrapper}`}>
           <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
             <SettingsEthernet className={styles.icon} />
-            {isMobile ? distance : <span>Distance: {distance} km</span>}
+            {isTabletOrMobile ? `${distance} km` : <span>Distance: {distance} km</span>}
           </div>
           <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
             <Timer className={styles.icon} />
-            {isMobile ? time : <span>Duration: {time} h</span>}
+            {isTabletOrMobile ? `${time} h` : <span>Duration: {time} h</span>}
           </div>
           <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
             <TrendingUp className={styles.icon} />
-            {isMobile ? ascent : <span>Elevation gain: {ascent} m</span>}
+            {isTabletOrMobile ? `${ascent} m` : <span>Elevation gain: {ascent} m</span>}
           </div>
           <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
             <TrendingDown className={styles.icon} />
-            {isMobile ? descent : <span>Elevation loss: {descent} m</span>}
+            {isTabletOrMobile ? `${descent} m` : <span>Elevation loss: {descent} m</span>}
           </div>
         </div>
         <div className={`${styles.detailsWrapper} col-xs-12`}>

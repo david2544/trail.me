@@ -62,7 +62,7 @@ const UploadHike: React.FC = () => {
         <div className={`row ${styles.inputSectionWrapper}`}>
           <div className="col-xs-12">
             <div className={styles.inputSection}>
-              <div className="col-xs-4">
+              <div className="col-md-4 col-sm-6">
                 {inputFieldsData1.map(inputFieldData => (
                   <div key={inputFieldData.inputValue} className={inputFieldData.className}>
                     <TextField
@@ -78,7 +78,7 @@ const UploadHike: React.FC = () => {
                 ))}
               </div>
 
-              <div className="col-xs-4">
+              <div className="col-md-4 col-sm-6">
                 {inputFieldsData2.map(inputFieldData => (
                   <div key={inputFieldData.inputValue} className={inputFieldData.className}>
                     <TextField
@@ -112,16 +112,16 @@ const UploadHike: React.FC = () => {
                   <small className={styles.fileUploadNote}>only .kml file type supported</small>
                 </label>
               </div>
-              <div className="col-xs-4">
+              <div className="col-md-4 col-sm-12">
                 <TextField
                   multiline
-                  className="col-xs-12"
+                  className="col-md-12 col-sm-8 col-xs-12"
                   label="Description:"
                   onChange={e => {
                     setHikeData({ ...hikeData, description: e.target.value });
                   }}
                 />
-                <div className="col-xs-12">
+                <div className="col-md-12 col-sm-4 col-xs-12">
                   <Button
                     className={styles.button}
                     variant="outlined"
