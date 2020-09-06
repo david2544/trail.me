@@ -4,14 +4,7 @@ import Container from '@common/Container';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
 import useFetchKml from '@hooks/useFetchKml';
 import ReactLeafletKml from 'react-leaflet-kml';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faRuler,
-  faStopwatch,
-  faSortUp,
-  faSortDown,
-  faCrosshairs,
-} from '@fortawesome/free-solid-svg-icons';
+import { Adjust, SettingsEthernet, Timer, TrendingUp, TrendingDown } from '@material-ui/icons';
 import { Map, TileLayer } from 'react-leaflet';
 import styles from './styles.module.scss';
 
@@ -62,11 +55,7 @@ const HikeCard: React.FC<IHikeCard> = ({
               <h3>{name && name}</h3>
             </div>
             <div className="col-xs-1">
-              <FontAwesomeIcon
-                onClick={() => setViewport({})}
-                className={styles.crosshairIcon}
-                icon={faCrosshairs}
-              />
+              <Adjust onClick={() => setViewport({})} className={styles.crosshairIcon} />
             </div>
           </div>
           <div className="col-xs-12">
@@ -84,20 +73,20 @@ const HikeCard: React.FC<IHikeCard> = ({
             </Map>
           </div>
           <div className={`col-xs-12 ${styles.statsWrapper}`}>
-            <div className="col-xs-3">
-              <FontAwesomeIcon className={styles.icon} icon={faRuler} />
-              Distance: {distance} km
+            <div className={`${styles.statWrapper} col-xs-3`}>
+              <SettingsEthernet className={styles.icon} />
+              <span>Distance: {distance} km</span>
             </div>
-            <div className="col-xs-3">
-              <FontAwesomeIcon className={styles.icon} icon={faStopwatch} />
+            <div className={`${styles.statWrapper} col-xs-3`}>
+              <Timer className={styles.icon} />
               Duration: {time} h
             </div>
-            <div className="col-xs-3">
-              <FontAwesomeIcon className={styles.icon} icon={faSortUp} />
+            <div className={`${styles.statWrapper} col-xs-3`}>
+              <TrendingUp className={styles.icon} />
               Elevation gain: {ascent} m
             </div>
-            <div className="col-xs-3">
-              <FontAwesomeIcon className={styles.icon} icon={faSortDown} />
+            <div className={`${styles.statWrapper} col-xs-3`}>
+              <TrendingDown className={styles.icon} />
               Elevation loss: {descent} m
             </div>
           </div>

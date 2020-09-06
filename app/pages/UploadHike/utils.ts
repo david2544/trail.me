@@ -1,16 +1,20 @@
 import Firebase from 'firebase';
 
 export const extractDataFromKml = (xmlDom, setHikeData, hikeData, fileName) => {
-  setHikeData({
-    ...hikeData,
-    fileName,
-    time: xmlDom.getElementsByName('time')[0].getElementsByTagName('value')[0].childNodes[0]
-      .nodeValue,
-    ascent: xmlDom.getElementsByName('ascent')[0].getElementsByTagName('value')[0].childNodes[0]
-      .nodeValue,
-    descent: xmlDom.getElementsByName('descent')[0].getElementsByTagName('value')[0].childNodes[0]
-      .nodeValue,
-  });
+  if (
+    xmlDom.getElementsByName('time')[0].getElementsByTagName('value')[0].childNodes[0].nodeValue
+  ) {
+    setHikeData({
+      ...hikeData,
+      fileName,
+      time: xmlDom.getElementsByName('time')[0].getElementsByTagName('value')[0].childNodes[0]
+        .nodeValue,
+      ascent: xmlDom.getElementsByName('ascent')[0].getElementsByTagName('value')[0].childNodes[0]
+        .nodeValue,
+      descent: xmlDom.getElementsByName('descent')[0].getElementsByTagName('value')[0].childNodes[0]
+        .nodeValue,
+    });
+  }
 };
 
 export const onFileUpload = ({ rawKml, history, hikeData }) => {
@@ -62,22 +66,27 @@ export const inputFieldsData1 = [
   {
     text: 'Hike name:',
     inputValue: 'name',
+    className: 'col-xs-11',
   },
   {
     text: 'Distance (km):',
     inputValue: 'distance',
+    className: 'col-xs-5',
   },
   {
     text: 'Duration (h):',
     inputValue: 'time',
+    className: 'col-xs-5 col-xs-offset-1',
   },
   {
     text: 'Ascent (m):',
     inputValue: 'ascent',
+    className: 'col-xs-5',
   },
   {
     text: 'Descent (m):',
     inputValue: 'descent',
+    className: 'col-xs-5 col-xs-offset-1',
   },
 ];
 
@@ -86,20 +95,25 @@ export const inputFieldsData2 = [
     text: 'Date:',
     inputValue: 'date',
     type: 'date',
-  },
-  {
-    text: 'Start location:',
-    inputValue: 'start-location',
-    type: 'text',
-  },
-  {
-    text: 'Finish location:',
-    inputValue: 'finish-location',
-    type: 'text',
+    inputLabelProps: { shrink: true },
+    className: 'col-xs-5',
   },
   {
     text: 'Country',
     inputValue: 'country',
     type: 'text',
+    className: 'col-xs-5 col-xs-offset-1',
+  },
+  {
+    text: 'Start location:',
+    inputValue: 'start-location',
+    type: 'text',
+    className: 'col-xs-5',
+  },
+  {
+    text: 'Finish location:',
+    inputValue: 'finish-location',
+    type: 'text',
+    className: 'col-xs-5 col-xs-offset-1',
   },
 ];

@@ -4,6 +4,9 @@ import classnames from 'classnames';
 import ReactLeafletKml from 'react-leaflet-kml';
 import { Map, TileLayer } from 'react-leaflet';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
+import { ArrowBack } from '@material-ui/icons';
+import Container from '@common/Container';
+import { Button, TextField } from '@material-ui/core';
 import { resizeMap, onFileUpload, onFileChange, inputFieldsData1, inputFieldsData2 } from './utils';
 import styles from './styles.module.scss';
 
@@ -55,88 +58,107 @@ const UploadHike: React.FC = () => {
         {kml && <ReactLeafletKml kml={kml} />}
       </Map>
 
-      <div className={`row ${styles.inputSectionWrapper}`}>
-        <div className="col-xs-12">
-          <div className={styles.inputSection}>
-            <div className="col-xs-4">
-              {inputFieldsData1.map(inputFieldData => (
-                <label
-                  key={inputFieldData.inputValue}
-                  htmlFor={inputFieldData.inputValue}
-                  className={styles.inputLabel}
-                >
-                  <span className={`col-xs-6 ${styles.label}`}>{inputFieldData.text}</span>
-                  <input
-                    className={`${styles.input} col-xs-5`}
-                    value={hikeData[inputFieldData.inputValue] || ''}
-                    type="text"
-                    id={inputFieldData.inputValue}
-                    onChange={e => {
-                      setHikeData({ ...hikeData, [inputFieldData.inputValue]: e.target.value });
-                    }}
-                  />
-                </label>
-              ))}
-            </div>
+      {!isSmallMap ? (
+        <div className={`row ${styles.inputSectionWrapper}`}>
+          <div className="col-xs-12">
+            <div className={styles.inputSection}>
+              <div className="col-xs-4">
+                {inputFieldsData1.map(inputFieldData => (
+                  <div key={inputFieldData.inputValue} className={inputFieldData.className}>
+                    <TextField
+                      required
+                      className={`${styles.input}`}
+                      label={inputFieldData.text}
+                      value={hikeData[inputFieldData.inputValue] || ''}
+                      onChange={e => {
+                        setHikeData({ ...hikeData, [inputFieldData.inputValue]: e.target.value });
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
 
-            <div className="col-xs-4">
-              {inputFieldsData2.map(inputFieldData => (
-                <label
-                  key={inputFieldData.inputValue}
-                  htmlFor={inputFieldData.inputValue}
-                  className={styles.inputLabel}
-                >
-                  <span className={`col-xs-6 ${styles.label}`}>{inputFieldData.text}</span>
-                  <input
-                    className={`${styles.input} col-xs-5`}
-                    value={hikeData[inputFieldData.inputValue] || ''}
-                    type={inputFieldData.type}
-                    id={inputFieldData.inputValue}
-                    onChange={e => {
-                      setHikeData({ ...hikeData, [inputFieldData.inputValue]: e.target.value });
-                    }}
-                  />
-                </label>
-              ))}
-              <label htmlFor="file" className={styles.inputLabel}>
-                <span className={`col-xs-6 ${styles.label}`}>Upload path data (.kml)</span>
+              <div className="col-xs-4">
+                {inputFieldsData2.map(inputFieldData => (
+                  <div key={inputFieldData.inputValue} className={inputFieldData.className}>
+                    <TextField
+                      required
+                      className={`${styles.input}`}
+                      id="outlined-basic"
+                      InputLabelProps={inputFieldData.inputLabelProps}
+                      type={inputFieldData.type}
+                      label={inputFieldData.text}
+                      value={hikeData[inputFieldData.inputValue] || ''}
+                      onChange={e => {
+                        setHikeData({ ...hikeData, [inputFieldData.inputValue]: e.target.value });
+                      }}
+                    />
+                  </div>
+                ))}
                 <input
-                  className="col-xs-6"
+                  accept=".kml"
+                  className={styles.fileUploadInput}
                   type="file"
-                  id="file"
+                  id="file-upload"
                   onChange={
                     e => onFileChange({ event: e, setRawKml, setKml, setHikeData, hikeData })
                     // eslint-disable-next-line react/jsx-curly-newline
                   }
                 />
-              </label>
-            </div>
-            <div className="col-xs-4">
-              <span className="col-xs-6">Description:</span>
-              <textarea
-                className="col-xs-11"
-                onChange={e => {
-                  setHikeData({ ...hikeData, description: e.target.value });
-                }}
-              />
-            </div>
-            <div className="col-xs-12">
-              <div className={styles.note}>
-                Please make sure you have centered the Map properly on the hike!
+                <label htmlFor="file-upload">
+                  <Button variant="contained" component="span">
+                    Upload
+                  </Button>
+                  <small className={styles.fileUploadNote}>only .kml file type supported</small>
+                </label>
               </div>
-              <input id="checkbox" type="checkbox" onClick={switchMapSize} />
-              <label htmlFor="checkbox">Show small map?</label>
-              <button
-                className={styles.button}
-                type="button"
-                onClick={() => onFileUpload({ rawKml, history, hikeData })}
-              >
-                Upload!
-              </button>
+              <div className="col-xs-4">
+                <TextField
+                  multiline
+                  className="col-xs-12"
+                  label="Description:"
+                  onChange={e => {
+                    setHikeData({ ...hikeData, description: e.target.value });
+                  }}
+                />
+                <div className="col-xs-12">
+                  <Button
+                    className={styles.button}
+                    variant="outlined"
+                    type="button"
+                    onClick={switchMapSize}
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <Container className={styles.preSubmitWrapper}>
+          <span>Please center the map on the hike for the thumbnail</span>
+          <div>
+            <Button
+              variant="outlined"
+              className={styles.backButton}
+              type="button"
+              onClick={switchMapSize}
+            >
+              <ArrowBack />
+            </Button>
+            <Button
+              className={styles.uploadButton}
+              variant="contained"
+              color="secondary"
+              type="button"
+              onClick={() => onFileUpload({ rawKml, history, hikeData })}
+            >
+              Upload
+            </Button>
+          </div>
+        </Container>
+      )}
     </div>
   );
 };

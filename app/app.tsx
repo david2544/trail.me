@@ -26,6 +26,8 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
 Firebase.initializeApp(config);
+// export const auth = Firebase.auth();
+// export const firestore = Firebase.firestore();
 
 const ConnectedApp = () => (
   <Provider store={store}>
