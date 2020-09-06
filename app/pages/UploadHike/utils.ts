@@ -48,12 +48,20 @@ export const parseFile = e => {
   return parser.parseFromString(text, 'text/xml');
 };
 
-export const onFileChange = ({ event, setRawKml, setKml, setHikeData, hikeData }) => {
+export const onFileChange = ({
+  event,
+  setRawKml,
+  setKml,
+  setHikeData,
+  hikeData,
+  setMissingFile,
+}) => {
   const reader = new FileReader();
   const file = event.target.files[0];
 
   setRawKml(event.target.files[0]);
   const fileName = event.target.files[0].name;
+  setMissingFile(false);
 
   reader.onloadend = e => {
     const xmlDom = parseFile(e);
@@ -62,6 +70,23 @@ export const onFileChange = ({ event, setRawKml, setKml, setHikeData, hikeData }
     extractDataFromKml(xmlDom, setHikeData, hikeData, fileName);
   };
   reader.readAsText(file);
+};
+
+export const validateAndHandleSubmit = ({
+  setHikeData,
+  hikeData,
+  data,
+  setMissingFile,
+  switchMapSize,
+}) => {
+  setHikeData({ ...hikeData, ...data });
+
+  if (!hikeData.fileName) {
+    setMissingFile(true);
+  } else {
+    setHikeData({ ...hikeData, viewport: {} });
+    switchMapSize();
+  }
 };
 
 export const inputFieldsData1 = [
@@ -96,6 +121,7 @@ export const inputFieldsData2 = [
   {
     text: 'Date:',
     inputValue: 'date',
+    validationRule: { pattern: /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/ },
     type: 'date',
     inputLabelProps: { shrink: true },
     className: 'col-xs-5',

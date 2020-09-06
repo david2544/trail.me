@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import HikeCard from '@common/HikeCard';
+
 import Container from '@common/Container';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
 import useFetchHikesData from '@hooks/useFetchHikesData';

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
-import { Modal, TextField, Button } from '@material-ui/core';
+import { Modal, TextField, Button, Snackbar } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import Firebase from 'firebase';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
@@ -16,18 +16,21 @@ type Inputs = {
   password: string;
 };
 
-const onSubmit = (data, onSubmitSuccess) => {
+const onSubmit = (data, onSubmitSuccess, setDisplayAlert) => {
   const ref = Firebase.database().ref();
 
   ref.on('value', snapshot => {
     if (snapshot.val().submitSecret === data.password) {
       onSubmitSuccess();
+    } else {
+      setDisplayAlert(true);
     }
   });
 };
 
 const LoginModal: React.FC<ILoginModalProps> = ({ open, handleClose, onSubmitSuccess }) => {
   const { isDarkMode } = useToggleDarkMode();
+  const [displayAlert, setDisplayAlert] = useState(false);
   const { register, handleSubmit, errors } = useForm<Inputs>();
 
   return (
@@ -38,17 +41,27 @@ const LoginModal: React.FC<ILoginModalProps> = ({ open, handleClose, onSubmitSuc
       aria-describedby="simple-modal-description"
     >
       <div className={classnames(styles.loginModal, { [styles.darkModeLoginModal]: isDarkMode })}>
+        <Snackbar
+          className={styles.snackBar}
+          open={displayAlert}
+          autoHideDuration={100000}
+          message="Wrong passphrase"
+          onClose={() => setDisplayAlert(false)}
+        >
+          <span>Incorrect passphrase</span>
+        </Snackbar>
         <div className="row">
-          <form onSubmit={handleSubmit(data => onSubmit(data, onSubmitSuccess))}>
-            <div className={`col-xs-12 ${styles.centerAlign}`}>Password</div>
+          <form onSubmit={handleSubmit(data => onSubmit(data, onSubmitSuccess, setDisplayAlert))}>
+            <div className={`col-xs-12 ${styles.centerAlign}`}>Security check</div>
             <div className={`col-xs-12 ${styles.loginInputWrapper}`}>
               <TextField
                 error={!!errors.password}
                 className={styles.loginInput}
+                autoFocus
                 type="password"
                 name="password"
                 inputRef={register({ required: true })}
-                label="Password"
+                label="Passphrase"
                 variant="outlined"
               />
             </div>

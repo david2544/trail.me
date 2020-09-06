@@ -15,8 +15,8 @@
       height: 8vh;
 
       .heading {
-        font-size: 25px;
-        padding-top: 4vh;
+        font-size: 18px;
+        padding-top: 3vh;
       }
     }
   }
@@ -29,6 +29,11 @@
     margin: auto;
     height: 500px;
     width: 970px;
+
+    @media (max-width: $screen-xs-max) {
+      width: auto;
+      height: 300px;
+    }
   }
 
   .inputSectionWrapper {
@@ -48,6 +53,11 @@
     color: $primary;
     margin-top: 20px;
     font-size: 20px;
+  }
+
+  .missingFileNote {
+    margin-top: 10px;
+    color: $primary;
   }
 
   .bottomMarginMobile {
