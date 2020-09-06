@@ -8,17 +8,31 @@
   transition: all 0.3s ease-in-out;
 
   .heading {
-    margin: 5px 20px;
+    margin: 20px;
   }
 
   .crosshairIcon {
-    margin-top: 18px;
+    margin: 20px;
     font-size: 25px;
+    float: right;
     cursor: pointer;
+
+    @media (max-width: $screen-xs-max) {
+      position: absolute;
+      margin: 0;
+      right: 10px;
+      top: 72px;
+      z-index: 9999;
+      color: $primary;
+    }
   }
 
   .map {
     height: 500px;
+
+    @media (max-width: $screen-xs-max) {
+      height: 300px;
+    }
   }
 
   .statsWrapper {
@@ -37,7 +51,9 @@
   }
 
   .detailsWrapper {
-    margin: 20px;
+    & > div {
+      padding: 20px;
+    }
   }
 
   .icon {

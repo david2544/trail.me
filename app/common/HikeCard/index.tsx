@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import Container from '@common/Container';
-import useToggleDarkMode from '@hooks/useToggleDarkMode';
-import useFetchKml from '@hooks/useFetchKml';
 import ReactLeafletKml from 'react-leaflet-kml';
 import { Adjust, SettingsEthernet, Timer, TrendingUp, TrendingDown } from '@material-ui/icons';
 import { Map, TileLayer } from 'react-leaflet';
+import useToggleDarkMode from '@hooks/useToggleDarkMode';
+import useFetchKml from '@hooks/useFetchKml';
+import useWindowSize from '@hooks/useWindowSize';
 import styles from './styles.module.scss';
 
 export interface IHikeData {
@@ -44,72 +44,72 @@ const HikeCard: React.FC<IHikeCard> = ({
 }) => {
   const { isDarkMode } = useToggleDarkMode();
   const [originalViewport, setViewport] = useState<object | null>(null);
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   const { kml } = useFetchKml(fileName);
 
   return (
-    <Container>
-      <div className={classnames(styles.hikeCard, { [styles.darkModeHikeCard]: isDarkMode })}>
-        <div className="row">
-          <div className={`col-xs-12 ${styles.heading}`}>
-            <div className="col-xs-11">
-              <h3>{name && name}</h3>
-            </div>
-            <div className="col-xs-1">
-              <Adjust onClick={() => setViewport({})} className={styles.crosshairIcon} />
-            </div>
+    <div className={classnames(styles.hikeCard, { [styles.darkModeHikeCard]: isDarkMode })}>
+      <div className="row">
+        <div className="col-xs-12">
+          <div className="col-xs-12 col-sm-11">
+            <h3 className={styles.heading}>{name && name}</h3>
           </div>
-          <div className="col-xs-12">
-            <Map
-              className={styles.map}
-              center={viewport.center}
-              zoom={viewport.zoom}
-              viewport={originalViewport}
-            >
-              <TileLayer
-                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              {kml && <ReactLeafletKml kml={kml} />}
-            </Map>
+          <div className="col-sm-1">
+            <Adjust onClick={() => setViewport({})} className={styles.crosshairIcon} />
           </div>
-          <div className={`col-xs-12 ${styles.statsWrapper}`}>
-            <div className={`${styles.statWrapper} col-xs-3`}>
-              <SettingsEthernet className={styles.icon} />
-              <span>Distance: {distance} km</span>
-            </div>
-            <div className={`${styles.statWrapper} col-xs-3`}>
-              <Timer className={styles.icon} />
-              Duration: {time} h
-            </div>
-            <div className={`${styles.statWrapper} col-xs-3`}>
-              <TrendingUp className={styles.icon} />
-              Elevation gain: {ascent} m
-            </div>
-            <div className={`${styles.statWrapper} col-xs-3`}>
-              <TrendingDown className={styles.icon} />
-              Elevation loss: {descent} m
-            </div>
+        </div>
+        <div className="col-xs-12">
+          <Map
+            className={styles.map}
+            center={viewport.center}
+            zoom={isMobile ? parseInt(viewport.zoom, 10) - 1 : viewport.zoom}
+            viewport={originalViewport}
+          >
+            <TileLayer
+              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {kml && <ReactLeafletKml kml={kml} />}
+          </Map>
+        </div>
+        <div className={`col-xs-12 ${styles.statsWrapper}`}>
+          <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
+            <SettingsEthernet className={styles.icon} />
+            {isMobile ? distance : <span>Distance: {distance} km</span>}
           </div>
-          <div className={`${styles.detailsWrapper} col-xs-12`}>
-            <div className="col-xs-6">{description && description}</div>
-            <div className="col-xs-offset-2 col-xs-4">
-              <div>
-                <strong>Date:</strong> {date}
-              </div>
-              <div>
-                <strong>Start location:</strong> {start}
-              </div>
-              <div>
-                <strong>Finish location:</strong> {finish}
-              </div>
-              <div>
-                <strong>Country:</strong> {country}
-              </div>
+          <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
+            <Timer className={styles.icon} />
+            {isMobile ? time : <span>Duration: {time} h</span>}
+          </div>
+          <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
+            <TrendingUp className={styles.icon} />
+            {isMobile ? ascent : <span>Elevation gain: {ascent} m</span>}
+          </div>
+          <div className={`${styles.statWrapper} col-sm-3 col-xs-6`}>
+            <TrendingDown className={styles.icon} />
+            {isMobile ? descent : <span>Elevation loss: {descent} m</span>}
+          </div>
+        </div>
+        <div className={`${styles.detailsWrapper} col-xs-12`}>
+          <div className="col-sm-6">{description && description}</div>
+          <div className="col-md-offset-1 col-sm-4">
+            <div>
+              <strong>Date:</strong> {date}
+            </div>
+            <div>
+              <strong>Start location:</strong> {start}
+            </div>
+            <div>
+              <strong>Finish location:</strong> {finish}
+            </div>
+            <div>
+              <strong>Country:</strong> {country}
             </div>
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
