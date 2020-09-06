@@ -154,7 +154,7 @@ const UploadHike: React.FC = () => {
               type="button"
               onClick={() => onFileUpload({ rawKml, history, hikeData })}
             >
-              Uploadasd
+              Upload
             </Button>
           </div>
         </Container>

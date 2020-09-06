@@ -1,0 +1,14 @@
+$screen-xs: 320;
+$screen-sm: 768;
+$screen-md: 992;
+$screen-lg: 1200;
+
+$screen-xs-min: $screen-xs + 'px';
+$screen-sm-min: $screen-sm + 'px';
+$screen-md-min: $screen-md + 'px';
+$screen-lg-min: $screen-lg + 'px';
+
+$screen-xxs-max: ($screen-xs - 1) + 'px';
+$screen-xs-max: ($screen-sm - 1) + 'px';
+$screen-sm-max: ($screen-md - 1) + 'px';
+$screen-md-max: ($screen-lg - 1) + 'px';
