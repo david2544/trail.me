@@ -2,6 +2,8 @@ import Firebase from 'firebase';
 
 export const extractDataFromKml = (xmlDom, setHikeData, hikeData, fileName) => {
   if (
+    xmlDom.getElementsByName('time').length &&
+    xmlDom.getElementsByName('time')[0].getElementsByTagName('value').length &&
     xmlDom.getElementsByName('time')[0].getElementsByTagName('value')[0].childNodes[0].nodeValue
   ) {
     setHikeData({
