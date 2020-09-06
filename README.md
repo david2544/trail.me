@@ -28,13 +28,13 @@ _A step by step series of examples that tell you how to get the development env 
 Clone this repo in your prefered location:
 
 ```console
-~# git clone git@github.com:davidcoroian/path-finder.git
+~# git clone git@github.com:davidcoroian/trail.me.git
 ```
 
 Navigate to it and install required dependencies:
 
 ```console
-~# cd path-finder
+~# cd trailme
 ~# npm install
 ```
 
@@ -148,13 +148,13 @@ _Information about some of the scripts that might come in handy._
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/davidcoroian/path-finder/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/davidcoroian/trail.me/tags).
 
 ## Authors
 
 - **David** - [Github profile](https://github.com/davidcoroian)
 
-See also the list of [contributors](https://github.com/davidcoroian/path-finder/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/davidcoroian/trail.me/graphs/contributors) who participated in this project.
 
 ## Bundle analysis
 

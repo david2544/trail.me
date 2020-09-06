@@ -1,11 +1,11 @@
 {
-  "homepage": "https://davidcoroian.github.io/",
-  "name": "path-finder",
+  "homepage": "https://davidcoroian.github.io/trail.me/",
+  "name": "trail.me",
   "version": "0.0.1",
-  "description": "Pension Products React frontend",
+  "description": "An archive of past hikes",
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidcoroian/path-finder"
+    "url": "https://github.com/davidcoroian/trail.me"
   },
   "engines": {
     "npm": ">=6.4.1",
@@ -86,6 +86,7 @@
     "react-leaflet": "2.7.0",
     "react-leaflet-kml": "1.0.4",
     "react-redux": "7.2.1",
+    "react-responsive-modal": "5.1.0",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
     "typesafe-actions": "5.1.0"

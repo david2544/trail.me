@@ -15,7 +15,7 @@ import configureStore from '@store/configureStore';
 import Router from './Router';
 
 // Load the favicon and the .htaccess file
-// import '!file-loader?name=[name].[ext]!../assets/images/favicon.ico';
+import '!file-loader?name=[name].[ext]!../assets/images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 
 // import styles
