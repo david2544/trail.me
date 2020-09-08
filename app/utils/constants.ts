@@ -17,6 +17,9 @@ export const FAIRR_PRODUCTS = {
 export const LINKS = {
   home: '/',
   uploadHike: '/uploadHike',
+  about: '/about',
+  contact: '/contact',
+  imprint: '/impressum',
 };
 
 export const LOCALES = {

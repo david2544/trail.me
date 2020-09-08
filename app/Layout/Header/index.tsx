@@ -9,6 +9,7 @@ import { LINKS } from '@utils/constants';
 import Container from '@common/Container';
 import LogoWhite from '@images/logo-white.png';
 import LogoBlack from '@images/logo-black.png';
+import SubNav from './SubNav';
 import styles from './styles.module.scss';
 
 interface HeaderProps {
@@ -16,6 +17,13 @@ interface HeaderProps {
   toggleMenu: Function;
   menuOpen: boolean;
 }
+
+const subMenuItem = {
+  transfer: [
+    { link: LINKS.contact, description: 'Contact' },
+    { link: LINKS.imprint, description: 'Impressum' },
+  ],
+};
 
 const Header: React.FC<HeaderProps> = ({ toggleMenu, menuOpen }) => {
   const { isDarkMode, toggleDarkMode } = useToggleDarkMode();
@@ -29,19 +37,25 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, menuOpen }) => {
         [styles.darkModeHeader]: isDarkMode,
       })}
     >
-      <div className={styles.logoContainer}>
+      <div
+        className={classnames(styles.logoContainer, {
+          [styles.minimizedLogoContainer]: scrollPosition > 100,
+        })}
+      >
         <Container>
           <div
-            className={classnames(styles.logoWrapper, {
-              [styles.minimized]: scrollPosition > 200,
+            className={classnames(styles.logoBox, {
+              [styles.minimized]: scrollPosition > 100,
             })}
           >
             <Link to={LINKS.home}>
-              <img
-                alt="fairr-logo"
-                className={styles.logo}
-                src={isDarkMode ? LogoWhite : LogoBlack}
-              />
+              <div className={styles.logoWrapper}>
+                <img
+                  alt="fairr-logo"
+                  className={styles.logo}
+                  src={isDarkMode ? LogoWhite : LogoBlack}
+                />
+              </div>
             </Link>
           </div>
           <button
@@ -59,35 +73,29 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, menuOpen }) => {
 
       <nav className={classnames('container', styles.navContainer)}>
         <ul className={styles.menuWrapper}>
-          {/* TODO: fix these clases */}
-          <li
-            className={classnames(styles.menuItemWrapper, {
-              [styles.active]: true,
-            })}
-          >
-            {/* <Link to={LINKS.switch.general} className={styles.menuItem}>
-              navi.main.transfer
-            </Link>
-            <div className={styles.subNav}>
-              <ul>
-                {subHeaderItems.transfer.map(item => (
-                  <SubNav key={item.description} subMenuItem={item} />
-                ))}
-              </ul>
-            </div> */}
+          <li className={styles.menuItemWrapper}>
             <Link to={LINKS.uploadHike} className={styles.menuItem}>
               Upload new hike
             </Link>
           </li>
-          {/* TODO: fix these clases */}
+          <li className={styles.menuItemWrapper}>
+            <Link to={LINKS.uploadHike} className={styles.menuItem}>
+              About
+            </Link>
+          </li>
           <li
             className={classnames(styles.menuItemWrapper, {
               [styles.active]: true,
             })}
           >
-            {/* <Link to={LINKS.security} className={styles.menuItem}>
-              about
-            </Link> */}
+            <span className={styles.menuItem}>More</span>
+            <div className={styles.subNav}>
+              <ul>
+                {subMenuItem.transfer.map(item => (
+                  <SubNav key={item.description} subMenuItem={item} />
+                ))}
+              </ul>
+            </div>
           </li>
           <li className={styles.menuItemWrapper}>
             <div className={`${styles.menuItem} ${styles.darkModeToggle}`}>

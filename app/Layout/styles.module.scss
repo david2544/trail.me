@@ -21,6 +21,10 @@
       }
     }
 
+    .headerWrapper {
+      background-color: $primary;
+    }
+
     .menuSidebarActive {
       background: rgba(0, 0, 0, 0.5);
       position: fixed;

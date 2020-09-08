@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className={styles.appContainer}>
       <div className={classnames({ [styles.menuOpen]: menuOpen })}>
-        <div ref={ref}>
+        <div className={classnames({ [styles.headerWrapper]: isDarkMode })} ref={ref}>
           <Header history={history} toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
         {menuOpen && <div className={styles.menuSidebarActive} />}

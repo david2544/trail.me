@@ -16,44 +16,64 @@
     transition: margin-top 100ms ease-in-out;
 
     @media (min-width: 768px) {
-      height: 10px;
+      height: 60px;
       background: white;
       box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.25);
     }
   }
 
-  .logoWrapper {
+  .minimizedLogoContainer {
+    @media (min-width: 768px) {
+      height: 42px;
+      transition: height 100ms ease-in-out;
+    }
+  }
+
+  .logoBox {
     position: relative;
     transition: transform 100ms ease-in-out;
     transform: scale(1, 1);
     transform-origin: top left;
     display: inline-block;
 
-    @media (max-width: 767px) {
-      position: relative;
-    }
-
     &:before {
       content: '';
       display: block;
-      height: 10px;
+      height: 60px;
       width: 100%;
       background: white;
+      visibility: hidden;
       position: relative;
-      z-index: 1;
     }
 
-    .logo {
-      display: flex;
-      background: white;
-      box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.25);
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      padding: 15px 20px 15px;
-      height: 60px;
+    @media (max-width: 767px) {
+      position: relative;
 
-      @media (max-width: 991px) {
-        height: 50px;
+      &:before {
+        height: 20px;
+      }
+    }
+
+    @media (min-width: $screen-sm-min) {
+      .logoWrapper {
+        position: relative;
+        transition: transform 100ms ease-in-out;
+        transform: scale(1, 1);
+        transform-origin: top left;
+        display: flex;
+        background: white;
+        box-shadow: 2px 5px 6px 0 rgba(0, 0, 0, 0.25);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 15px 20px 15px;
+        height: 0px;
+        width: 67.5px;
+
+        .logo {
+          position: absolute;
+          top: -45px;
+          height: 60px;
+        }
       }
     }
   }
@@ -118,7 +138,7 @@
   .menuWrapper {
     padding: 0;
     list-style-type: none;
-    margin: 10px 15px 9px 10%;
+    margin: 10px 15px 9px 15%;
     display: flex;
     justify-content: space-between;
 
@@ -127,7 +147,7 @@
       background: none;
       border: none;
       outline: inherit;
-      padding: 32px 5px;
+      padding: 6px 5px;
       display: inline-block;
       color: inherit;
       position: relative;
@@ -145,8 +165,22 @@
       padding: 25px 5px;
     }
 
-    a.menuItem {
-      padding: 35px 5px;
+    a.menuItem,
+    span.menuItem {
+      padding: 12px 5px;
+    }
+
+    span.menuItem {
+      pointer-events: all;
+      cursor: pointer;
+
+      @media (max-width: $screen-xs-max) {
+        pointer-events: none;
+      }
+    }
+
+    .menuItemWrapper:last-of-type {
+      text-align: right;
     }
 
     .menuItemWrapper {
@@ -181,7 +215,7 @@
           pointer-events: none;
           position: absolute;
           color: black;
-          margin: -26px 0 0 -18px - 30px;
+          margin: -10px 0 0 -18px - 30px;
           padding: 8px 0 0 0;
           font-size: 14px;
           left: 50%;
@@ -253,8 +287,8 @@
 
         button:hover + .subNav,
         button:focus + .subNav,
-        a:hover + .subNav,
-        a:focus + .subNav,
+        span:hover + .subNav,
+        span:focus + .subNav,
         .subNav:hover {
           pointer-events: auto;
           transform: scale(1, 1);
@@ -263,7 +297,7 @@
         }
 
         button:not(:hover) + .subNav:not(:hover),
-        a:not(:hover) + .subNav:not(:hover) {
+        span:not(:hover) + .subNav:not(:hover) {
           transition: all 200ms ease-in-out;
           transform: scale(0.01, 0.01);
           transform-origin: 18px + 30px 0%;
@@ -289,7 +323,6 @@
 
       .logoWrapper {
         width: auto;
-        padding: 15px 0;
         float: left;
 
         &:before {
@@ -331,8 +364,7 @@
         margin: 0 20px;
         display: block;
 
-        .menuItemWrapper,
-        .darkModeToggle {
+        .menuItemWrapper {
           display: block;
           color: black;
           padding: 10px 34px 0;
@@ -413,6 +445,10 @@
   .logoContainer {
     transition: background-color 1s ease;
     background-color: $dark-heading;
+
+    .logoWrapper {
+      background-color: $dark-heading;
+    }
   }
 
   .navContainer {
