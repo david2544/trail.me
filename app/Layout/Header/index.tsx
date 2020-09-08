@@ -7,7 +7,8 @@ import DarkModeToggle from 'react-dark-mode-toggle';
 import useToggleDarkMode from '@app/hooks/useToggleDarkMode';
 import { LINKS } from '@utils/constants';
 import Container from '@common/Container';
-import Logo from '@images/logo.png';
+import LogoWhite from '@images/logo-white.png';
+import LogoBlack from '@images/logo-black.png';
 import styles from './styles.module.scss';
 
 interface HeaderProps {
@@ -36,7 +37,11 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, menuOpen }) => {
             })}
           >
             <Link to={LINKS.home}>
-              <img alt="fairr-logo" className={styles.logo} src={Logo} />
+              <img
+                alt="fairr-logo"
+                className={styles.logo}
+                src={isDarkMode ? LogoWhite : LogoBlack}
+              />
             </Link>
           </div>
           <button
