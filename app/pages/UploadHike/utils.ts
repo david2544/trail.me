@@ -84,7 +84,6 @@ export const validateAndHandleSubmit = ({
   if (!hikeData.fileName) {
     setMissingFile(true);
   } else {
-    setHikeData({ ...hikeData, viewport: {} });
     switchMapSize();
   }
 };

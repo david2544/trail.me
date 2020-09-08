@@ -44,7 +44,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({ open, handleClose, onSubmitSuc
         <Snackbar
           className={styles.snackBar}
           open={displayAlert}
-          autoHideDuration={100000}
+          autoHideDuration={2000}
           message="Wrong passphrase"
           onClose={() => setDisplayAlert(false)}
         >
