@@ -1,30 +1,27 @@
 import { useState, useEffect } from 'react';
 import Firebase from 'firebase';
 
+const fetchNewData = (hikesData: object, setHikesData: Function, listPos: string) => {
+  const ref = Firebase.database()
+    .ref('hikes')
+    .orderByKey()
+    .startAt('0')
+    .endAt(listPos)
+    .limitToLast(3);
+
+  ref.on('value', snapshot => {
+    setHikesData({ ...hikesData, ...snapshot.val() });
+  });
+};
+
 const useFetchKml = () => {
   const [hikesData, setHikesData] = useState({});
 
   useEffect(() => {
-    const ref = Firebase.database().ref();
-
-    ref.on('value', snapshot => {
-      setHikesData(snapshot.val().hikeEntries);
-    });
+    fetchNewData(hikesData, setHikesData, '9999999999999');
   }, []);
 
-  const orderedHikesChronologically = {};
-
-  Object.keys(hikesData)
-    .sort((a, b) => {
-      a = a.split('-').join('');
-      b = b.split('-').join('');
-      return b.localeCompare(a);
-    })
-    .forEach(entry => {
-      orderedHikesChronologically[entry] = hikesData[entry];
-    });
-
-  return { hikesData: orderedHikesChronologically };
+  return { hikesData, setHikesData, fetchNewData };
 };
 
 export default useFetchKml;

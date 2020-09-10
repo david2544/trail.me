@@ -79,8 +79,9 @@ export const validateAndHandleSubmit = ({
   setMissingFile,
   switchMapSize,
 }) => {
+  // eslint-disable-next-line no-param-reassign
+  data.date = new Date(data.date).getTime();
   setHikeData({ ...hikeData, ...data });
-
   if (!hikeData.fileName) {
     setMissingFile(true);
   } else {

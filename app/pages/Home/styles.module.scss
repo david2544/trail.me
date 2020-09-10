@@ -52,3 +52,12 @@
     transition: color 1s ease;
   }
 }
+
+.loadMoreButton {
+  margin-bottom: 30px;
+  text-align: center;
+
+  button {
+    overflow-anchor: none;
+  }
+}
