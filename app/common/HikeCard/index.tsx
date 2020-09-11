@@ -14,7 +14,7 @@ export interface IHikeData {
   time: string;
   ascent: string;
   descent: string;
-  date: Date;
+  date: string;
   start: string;
   finish: string;
   country: string;
@@ -25,6 +25,29 @@ export interface IHikeData {
 interface IHikeCard {
   hikeData: IHikeData;
 }
+
+const getDate = (timestamp: string) => {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const date = new Date(parseInt(timestamp, 10));
+  const year = date.getFullYear();
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  return `${day} ${month} ${year}`;
+};
 
 const HikeCard: React.FC<IHikeCard> = ({
   hikeData: {
@@ -94,18 +117,22 @@ const HikeCard: React.FC<IHikeCard> = ({
         </div>
         <div className={`${styles.detailsWrapper} col-xs-12`}>
           <div className="col-sm-6">{description && description}</div>
-          <div className="col-md-offset-1 col-sm-4">
+          <div className="col-md-offset-1 col-md-3 col-sm-4">
             <div>
-              <strong>Date:</strong> {date}
+              <strong>Date:</strong>
+              <span className={styles.stat}> {getDate(date)}</span>
             </div>
             <div>
-              <strong>Start location:</strong> {start}
+              <strong>Start location:</strong>
+              <span className={styles.stat}> {start}</span>
             </div>
             <div>
-              <strong>Finish location:</strong> {finish}
+              <strong>Finish location:</strong>
+              <span className={styles.stat}> {finish}</span>
             </div>
             <div>
-              <strong>Country:</strong> {country}
+              <strong>Country:</strong>
+              <span className={styles.stat}> {country}</span>
             </div>
           </div>
         </div>
