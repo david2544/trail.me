@@ -1,49 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classnames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
+import Skeleton from '@material-ui/lab/Skeleton';
 import HikeCard from '@common/HikeCard';
 import Container from '@common/Container';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
-import useFetchHikesData from '@hooks/useFetchHikesData';
-import useScroll from '@hooks/useScroll';
+import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import styles from './styles.module.scss';
-
-const loadMoreData = ({
-  hikesData,
-  setHikesData,
-  listPos,
-  fetchNewData,
-  setListPos,
-  setIsFetching,
-}) => {
-  setTimeout(() => {
-    const listPosition = (Number(Object.keys(hikesData).sort()[0]) - 1).toString();
-    fetchNewData(hikesData, setHikesData, listPosition);
-    setListPos(listPos);
-    setIsFetching(false);
-  }, 1000);
-};
 
 const Home: React.FC = () => {
   const { isDarkMode } = useToggleDarkMode();
-  const [listPos, setListPos] = useState('9999999999999');
-  const { hikesData, setHikesData, fetchNewData } = useFetchHikesData();
-  const [isFetching, setIsFetching] = useState(false);
-  const { scrollPosition } = useScroll();
-
-  if (
-    window.innerHeight + scrollPosition >= document.body.scrollHeight &&
-    !isEmpty(hikesData) &&
-    scrollPosition !== 0 &&
-    !isFetching
-  ) {
-    setIsFetching(true);
-  }
-
-  useEffect(() => {
-    if (!isFetching) return;
-    loadMoreData({ hikesData, setHikesData, listPos, fetchNewData, setListPos, setIsFetching });
-  }, [isFetching]);
+  const { hikesData, allHikesLoaded } = useInfiniteScroll();
 
   return (
     <div className={classnames(styles.home, { [styles.darkModeHome]: isDarkMode })}>
@@ -56,7 +22,25 @@ const Home: React.FC = () => {
           .map(hikeKey => (
             <HikeCard key={hikeKey} hikeData={hikesData[hikeKey]} />
           ))}
-        <div className={styles.loadMoreButton}></div>
+        {allHikesLoaded ? (
+          <div className={styles.listBottomText}>
+            That&apos;s it, you&apos;ve reached the bottom
+          </div>
+        ) : (
+          <div className={styles.skeletonWrapper}>
+            <div className={styles.skeletonHeadingWrapper}>
+              <div className={styles.skeletonTitle}>
+                <Skeleton animation="wave" height={30} width="40%" />
+              </div>
+              <div className={styles.skeletonIcon}>
+                <Skeleton animation="wave" variant="circle" height={25} width={25} />
+              </div>
+            </div>
+            <div className={styles.skeletonMap}>
+              <Skeleton animation="wave" width="100%" />
+            </div>
+          </div>
+        )}
       </Container>
     </div>
   );
