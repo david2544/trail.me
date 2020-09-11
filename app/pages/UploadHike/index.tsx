@@ -127,7 +127,6 @@ const UploadHike: React.FC = () => {
                     </div>
                   ))}
                   <input
-                    accept=".kml"
                     className={styles.fileUploadInput}
                     type="file"
                     id="file-upload"
