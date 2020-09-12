@@ -31,7 +31,7 @@ export const onFileUpload = ({ rawKml, history, hikeData }) => {
 
   Firebase.database()
     .ref()
-    .child('hikeEntries')
+    .child('hikes')
     .child(hikeData.date)
     .set({ ...hikeData }, () => history.push('/'));
 };
@@ -87,6 +87,19 @@ export const validateAndHandleSubmit = ({
   } else {
     switchMapSize();
   }
+};
+
+export const initialStatePhotoData = {
+  url: '',
+  long: '',
+  lat: '',
+};
+
+export const setMarkers = (setHikeData, hikeData, photoData, setPhotoData) => {
+  const { markers = [] } = hikeData;
+  markers.push({ content: photoData.url, position: [photoData.long, photoData.lat] });
+  setHikeData({ ...hikeData, markers });
+  setPhotoData(initialStatePhotoData);
 };
 
 export const inputFieldsData1 = [

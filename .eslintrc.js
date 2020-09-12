@@ -24,6 +24,7 @@ module.exports = {
   ignorePatterns: ['**/__mocks__/**/*'],
   rules: {
     'jsx-no-lambda': 0,
+    'react/jsx-curly-newline': 0,
     'object-curly-newline': 0,
     'function-paren-newline': 0,
     'import/prefer-default-export': 0,

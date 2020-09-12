@@ -16,6 +16,8 @@ import {
   validateAndHandleSubmit,
   inputFieldsData1,
   inputFieldsData2,
+  setMarkers,
+  initialStatePhotoData,
 } from './utils';
 import styles from './styles.module.scss';
 
@@ -46,11 +48,18 @@ type Inputs = {
   finish: string;
 };
 
+type PhotoUploadData = {
+  url?: string;
+  long?: string;
+  lat?: string;
+};
+
 const UploadHike: React.FC = () => {
   const { isDarkMode } = useToggleDarkMode();
   const [kml, setKml] = useState<Document>();
   const [rawKml, setRawKml] = useState<any>();
   const [isSmallMap, toggleSmallMap] = useState(false);
+  const [photoData, setPhotoData] = useState<PhotoUploadData>(initialStatePhotoData);
   const [open, setLoginModalState] = useState(false);
   const [missingFile, setMissingFile] = useState(false);
   const { register, handleSubmit, errors } = useForm<Inputs>();
@@ -130,17 +139,15 @@ const UploadHike: React.FC = () => {
                     className={styles.fileUploadInput}
                     type="file"
                     id="file-upload"
-                    onChange={
-                      e =>
-                        onFileChange({
-                          event: e,
-                          setRawKml,
-                          setKml,
-                          setHikeData,
-                          hikeData,
-                          setMissingFile,
-                        })
-                      // eslint-disable-next-line react/jsx-curly-newline
+                    onChange={e =>
+                      onFileChange({
+                        event: e,
+                        setRawKml,
+                        setKml,
+                        setHikeData,
+                        hikeData,
+                        setMissingFile,
+                      })
                     }
                   />
                   <label htmlFor="file-upload">
@@ -149,7 +156,7 @@ const UploadHike: React.FC = () => {
                       color={missingFile ? 'secondary' : undefined}
                       component="span"
                     >
-                      Upload
+                      Upload map
                     </Button>
                     <small className={styles.fileUploadNote}>only .kml file type supported</small>
                   </label>
@@ -171,6 +178,71 @@ const UploadHike: React.FC = () => {
                     <Button className={styles.button} variant="outlined" type="submit">
                       Continue
                     </Button>
+                  </div>
+                </div>
+                <div className="col-xs-12">
+                  <div className={styles.photoUploadWrapper}>
+                    <div className="col-md-4 col-sm-6">
+                      <TextField
+                        className="col-xs-11"
+                        name="photo-upload"
+                        id="outlined-basic"
+                        type="text"
+                        value={photoData.url || ''}
+                        onChange={e =>
+                          setPhotoData({
+                            ...photoData,
+                            url: e.target.value,
+                          })
+                        }
+                        label="Photo url"
+                      />
+                    </div>
+                    <div className="col-md-2">
+                      <TextField
+                        className="col-md-10"
+                        name="photo-long-coord"
+                        id="outlined-basic"
+                        type="number"
+                        value={photoData.long || ''}
+                        onChange={e =>
+                          setPhotoData({
+                            ...photoData,
+                            long: e.target.value,
+                          })
+                        }
+                        label="Longitude"
+                      />
+                    </div>
+                    <div className="col-md-2">
+                      <TextField
+                        className="col-md-10"
+                        name="photo-lat-coord"
+                        id="outlined-basic"
+                        type="number"
+                        value={photoData.lat || ''}
+                        onChange={e =>
+                          setPhotoData({
+                            ...photoData,
+                            lat: e.target.value,
+                          })
+                        }
+                        label="Latitude"
+                      />
+                    </div>
+                    <div className={styles.photoUploadButton}>
+                      <Button
+                        className={styles.photoUploadButton}
+                        onClick={() => setMarkers(setHikeData, hikeData, photoData, setPhotoData)}
+                        variant="contained"
+                        component="span"
+                      >
+                        Add photo
+                      </Button>
+                      <small className={styles.fileUploadNote}>
+                        Uploaded photos {hikeData.markers?.length || 0}
+                      </small>
+                    </div>
                   </div>
                 </div>
               </form>

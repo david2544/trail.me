@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import ReactLeafletKml from 'react-leaflet-kml';
 import { Adjust, SettingsEthernet, Timer, TrendingUp, TrendingDown } from '@material-ui/icons';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
 import useFetchKml from '@hooks/useFetchKml';
 import useWindowSize from '@hooks/useWindowSize';
@@ -20,6 +20,7 @@ export interface IHikeData {
   country: string;
   description: string;
   fileName: string;
+  markers: { key: string; position: string[]; content: JSX.Element }[];
   viewport: { center: string[]; zoom: string };
 }
 interface IHikeCard {
@@ -49,6 +50,23 @@ const getDate = (timestamp: string) => {
   return `${day} ${month} ${year}`;
 };
 
+const MyPopupMarker = ({ content, position }) => (
+  <Marker position={position}>
+    <Popup>
+      <img alt="fairr-logo" className={styles.popupImage} src={content} />
+    </Popup>
+  </Marker>
+);
+
+const MyMarkersList = ({
+  markers,
+}: {
+  markers: { position: string[]; content: JSX.Element }[];
+}) => {
+  const items = markers.map(({ ...props }) => <MyPopupMarker key={props.position[0]} {...props} />);
+  return <>{items}</>;
+};
+
 const HikeCard: React.FC<IHikeCard> = ({
   hikeData: {
     name,
@@ -63,6 +81,7 @@ const HikeCard: React.FC<IHikeCard> = ({
     fileName,
     description,
     viewport,
+    markers,
   },
 }) => {
   const { isDarkMode } = useToggleDarkMode();
@@ -94,6 +113,7 @@ const HikeCard: React.FC<IHikeCard> = ({
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            {markers && <MyMarkersList markers={markers} />}
             {kml && <ReactLeafletKml kml={kml} />}
           </Map>
         </div>
