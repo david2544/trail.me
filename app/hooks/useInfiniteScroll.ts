@@ -14,7 +14,7 @@ const fetchData = (
     .orderByKey()
     .startAt('0')
     .endAt(listPos)
-    .limitToLast(3);
+    .limitToLast(10);
 
   ref.on('value', snapshot => {
     const res = snapshot.val();

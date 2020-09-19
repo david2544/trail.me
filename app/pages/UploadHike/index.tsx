@@ -49,7 +49,7 @@ type Inputs = {
 };
 
 type PhotoUploadData = {
-  url?: string;
+  file?: File;
   long?: string;
   lat?: string;
 };
@@ -60,6 +60,7 @@ const UploadHike: React.FC = () => {
   const [rawKml, setRawKml] = useState<any>();
   const [isSmallMap, toggleSmallMap] = useState(false);
   const [photoData, setPhotoData] = useState<PhotoUploadData>(initialStatePhotoData);
+  const [photos, setPhotos] = useState({ photoFiles: [] });
   const [open, setLoginModalState] = useState(false);
   const [missingFile, setMissingFile] = useState(false);
   const { register, handleSubmit, errors } = useForm<Inputs>();
@@ -183,20 +184,29 @@ const UploadHike: React.FC = () => {
                 <div className="col-xs-12">
                   <div className={styles.photoUploadWrapper}>
                     <div className="col-md-4 col-sm-6">
-                      <TextField
-                        className="col-xs-11"
-                        name="photo-upload"
-                        id="outlined-basic"
-                        type="text"
-                        value={photoData.url || ''}
-                        onChange={e =>
+                      <input
+                        className={styles.fileUploadInput}
+                        type="file"
+                        id="photo-upload"
+                        onChange={e => {
                           setPhotoData({
                             ...photoData,
-                            url: e.target.value,
-                          })
-                        }
-                        label="Photo url"
+                            file: e.target.files[0],
+                          });
+                        }}
                       />
+                      <label htmlFor="photo-upload">
+                        <Button
+                          variant="contained"
+                          color={missingFile ? 'secondary' : undefined}
+                          component="span"
+                        >
+                          Upload map
+                        </Button>
+                        <small className={styles.fileUploadNote}>
+                          {photoData?.file?.name && photoData.file.name}
+                        </small>
+                      </label>
                     </div>
                     <div className="col-md-2">
                       <TextField
@@ -233,7 +243,16 @@ const UploadHike: React.FC = () => {
                     <div className={styles.photoUploadButton}>
                       <Button
                         className={styles.photoUploadButton}
-                        onClick={() => setMarkers(setHikeData, hikeData, photoData, setPhotoData)}
+                        onClick={() =>
+                          setMarkers({
+                            setHikeData,
+                            hikeData,
+                            photoData,
+                            setPhotoData,
+                            photos,
+                            setPhotos,
+                          })
+                        }
                         variant="contained"
                         component="span"
                       >
@@ -278,7 +297,7 @@ const UploadHike: React.FC = () => {
       <LoginModal
         handleClose={() => setLoginModalState(false)}
         open={open}
-        onSubmitSuccess={() => onFileUpload({ rawKml, history, hikeData })}
+        onSubmitSuccess={() => onFileUpload({ rawKml, history, hikeData, photos })}
       />
     </div>
   );

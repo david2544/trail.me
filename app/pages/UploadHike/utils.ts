@@ -19,13 +19,24 @@ export const extractDataFromKml = (xmlDom, setHikeData, hikeData, fileName) => {
   }
 };
 
-export const onFileUpload = ({ rawKml, history, hikeData }) => {
+export const onFileUpload = ({ rawKml, history, hikeData, photos }) => {
   const ref = Firebase.storage().ref();
+  const photoRef = Firebase.storage().ref('images');
 
   const fileName = rawKml.name;
   const metadata = {
     contentType: rawKml.type,
   };
+
+  photos.photoFiles.forEach(photoFile => {
+    const photoName = photoFile.name;
+    const photoMetadata = {
+      contentType: photoFile.type,
+    };
+    console.log('(object) :>> ', photoFile, hikeData.markers);
+
+    photoRef.child(photoName).put(photoFile, photoMetadata);
+  });
 
   ref.child(fileName).put(rawKml, metadata);
 
@@ -95,10 +106,20 @@ export const initialStatePhotoData = {
   lat: '',
 };
 
-export const setMarkers = (setHikeData, hikeData, photoData, setPhotoData) => {
+export const setMarkers = ({
+  setHikeData,
+  hikeData,
+  photoData,
+  setPhotoData,
+  photos,
+  setPhotos,
+}) => {
   const { markers = [] } = hikeData;
-  markers.push({ content: photoData.url, position: [photoData.long, photoData.lat] });
+  const { photoFiles = [] } = photos;
+  markers.push({ content: photoData.file.name, position: [photoData.long, photoData.lat] });
+  photoFiles.push(photoData.file);
   setHikeData({ ...hikeData, markers });
+  setPhotos({ photoFiles });
   setPhotoData(initialStatePhotoData);
 };
 

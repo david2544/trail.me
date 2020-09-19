@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import ReactLeafletKml from 'react-leaflet-kml';
 import { Adjust, SettingsEthernet, Timer, TrendingUp, TrendingDown } from '@material-ui/icons';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
+import Firebase from 'firebase';
 import useFetchKml from '@hooks/useFetchKml';
 import useWindowSize from '@hooks/useWindowSize';
 import styles from './styles.module.scss';
@@ -50,13 +52,53 @@ const getDate = (timestamp: string) => {
   return `${day} ${month} ${year}`;
 };
 
-const MyPopupMarker = ({ content, position }) => (
-  <Marker position={position}>
-    <Popup>
-      <img alt="fairr-logo" className={styles.popupImage} src={content} />
-    </Popup>
-  </Marker>
-);
+const fetchImage = (
+  content: string,
+  imageLoaded: boolean,
+  setPhotoUrl: Function,
+  setImageLoaded: Function,
+) => {
+  if (imageLoaded) return;
+
+  const ref = Firebase.storage().ref('images');
+  ref
+    .child(content)
+    .getDownloadURL()
+    .then(url =>
+      fetch(url).then(() => {
+        setPhotoUrl(url);
+        setImageLoaded(true);
+      }),
+    );
+};
+
+const MyPopupMarker = ({ content, position }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const setRerender = useState(false)[1];
+  const [photoUrl, setPhotoUrl] = useState();
+
+  return (
+    <Marker
+      onClick={() => fetchImage(content, imageLoaded, setPhotoUrl, setImageLoaded)}
+      position={position}
+    >
+      {imageLoaded ? (
+        <Popup className={styles.popup}>
+          <img
+            alt="hike"
+            className={styles.popupImage}
+            onLoad={() => setRerender(true)}
+            src={photoUrl}
+          />
+        </Popup>
+      ) : (
+        <Popup className={styles.popup}>
+          <CircularProgress />
+        </Popup>
+      )}
+    </Marker>
+  );
+};
 
 const MyMarkersList = ({
   markers,
@@ -137,7 +179,7 @@ const HikeCard: React.FC<IHikeCard> = ({
         </div>
         <div className={`${styles.detailsWrapper} col-xs-12`}>
           <div className="col-sm-6">{description && description}</div>
-          <div className="col-md-offset-1 col-md-3 col-sm-4">
+          <div className="col-md-offset-1 col-md-4 col-sm-4">
             <div>
               <strong>Date:</strong>
               <span className={styles.stat}> {getDate(date)}</span>

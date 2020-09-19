@@ -83,6 +83,14 @@
   }
 }
 
-.popupImage {
-  width: 300px;
+.popup {
+  .popupImage {
+    max-width: 300px;
+    max-height: 800px;
+
+    @media (max-width: $screen-xs-max) {
+      max-width: 300px;
+      max-height: 200px;
+    }
+  }
 }
