@@ -106,7 +106,9 @@ const MyMarkersList = ({
 }: {
   markers: { position: string[]; content: JSX.Element }[];
 }) => {
-  const items = markers.map(({ ...props }) => <MyPopupMarker key={props.position[0]} {...props} />);
+  const items = markers.map(({ ...props }) => (
+    <MyPopupMarker key={`${props.content} ${props.position[0]}`} {...props} />
+  ));
   return <>{items}</>;
 };
 
