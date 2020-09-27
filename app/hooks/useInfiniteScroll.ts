@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Firebase from 'firebase';
+import Firebase from 'firebase/app';
+import 'firebase/database';
 import useScroll from './useScroll';
 
 const fetchData = (

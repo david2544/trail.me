@@ -5,7 +5,8 @@ import { Adjust, SettingsEthernet, Timer, TrendingUp, TrendingDown } from '@mate
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
-import Firebase from 'firebase';
+import Firebase from 'firebase/app';
+import 'firebase/storage';
 import useFetchKml from '@hooks/useFetchKml';
 import useWindowSize from '@hooks/useWindowSize';
 import styles from './styles.module.scss';

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import { Modal, TextField, Button, Snackbar } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import Firebase from 'firebase';
+import Firebase from 'firebase/app';
+import 'firebase/database';
 import useToggleDarkMode from '@hooks/useToggleDarkMode';
 import styles from './styles.module.scss';
 

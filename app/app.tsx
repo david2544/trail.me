@@ -9,7 +9,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import history from '@app/utils/history';
 
 // firebase
-import Firebase from 'firebase';
+import Firebase from 'firebase/app';
 import config from '@app/utils/firebaseConfig';
 
 // Import root app

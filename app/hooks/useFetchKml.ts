@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import Firebase from 'firebase';
+import Firebase from 'firebase/app';
+import 'firebase/storage';
 
 const useFetchKml = (fileName: string) => {
   const [kml, setKml] = useState<Document>();
