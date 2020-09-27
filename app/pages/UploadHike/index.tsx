@@ -54,6 +54,12 @@ type PhotoUploadData = {
   lat?: string;
 };
 
+const submitEntry = ({ loggedIn, rawKml, history, hikeData, photos }) => {
+  if (loggedIn) {
+    onFileUpload({ rawKml, history, hikeData, photos });
+  }
+};
+
 const UploadHike: React.FC = () => {
   const { isDarkMode } = useToggleDarkMode();
   const [kml, setKml] = useState<Document>();
@@ -61,7 +67,7 @@ const UploadHike: React.FC = () => {
   const [isSmallMap, toggleSmallMap] = useState(false);
   const [photoData, setPhotoData] = useState<PhotoUploadData>(initialStatePhotoData);
   const [photos, setPhotos] = useState({ photoFiles: [] });
-  const [open, setLoginModalState] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [missingFile, setMissingFile] = useState(false);
   const { register, handleSubmit, errors } = useForm<Inputs>();
   const [hikeData, setHikeData] = useState<any>({});
@@ -285,20 +291,14 @@ const UploadHike: React.FC = () => {
               variant="contained"
               color="secondary"
               type="button"
-              onClick={() => {
-                setLoginModalState(true);
-              }}
+              onClick={() => submitEntry({ loggedIn, rawKml, history, hikeData, photos })}
             >
               Upload
             </Button>
           </div>
         </Container>
       )}
-      <LoginModal
-        handleClose={() => setLoginModalState(false)}
-        open={open}
-        onSubmitSuccess={() => onFileUpload({ rawKml, history, hikeData, photos })}
-      />
+      <LoginModal setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
     </div>
   );
 };

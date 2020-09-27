@@ -35,11 +35,10 @@ export const onFileUpload = ({ rawKml, history, hikeData, photos }) => {
     const photoMetadata = {
       contentType: photoFile.type,
     };
-    console.log('(object) :>> ', photoFile, hikeData.markers);
 
     photoRef.child(photoName).put(photoFile, photoMetadata);
   });
-
+  console.log('object :>> ');
   ref.child(fileName).put(rawKml, metadata);
 
   Firebase.database()
