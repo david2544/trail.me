@@ -207,7 +207,7 @@ const UploadHike: React.FC = () => {
                           color={missingFile ? 'secondary' : undefined}
                           component="span"
                         >
-                          Upload map
+                          Upload photo
                         </Button>
                         <small className={styles.fileUploadNote}>
                           {photoData?.file?.name && photoData.file.name}
