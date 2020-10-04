@@ -39,7 +39,7 @@ const GlobalMap: React.FC = () => {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {documents.length &&
+        {documents &&
           Object.keys(documents).map(index => (
             <div key={index}>
               <ReactLeafletKml kml={documents[index]} />
