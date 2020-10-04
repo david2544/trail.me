@@ -7,6 +7,7 @@ import Layout from '@Layout/index';
 
 const Home = React.lazy(() => import('@pages/Home'));
 const UploadHike = React.lazy(() => import('@pages/UploadHike'));
+const GlobalMap = React.lazy(() => import('@pages/GlobalMap'));
 // [IMPORT NEW PAGE ABOVE] < Needed for generating containers seamlessly
 
 const Router: React.FC = () => {
@@ -25,6 +26,7 @@ const Router: React.FC = () => {
           <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/uploadHike" exact render={() => <UploadHike />} />
+            <Route path="/globalMap" render={() => <GlobalMap />} />
             {/* [INSERT NEW ROUTE ABOVE] < Needed for generating containers seamlessly */}
           </Switch>
         </Layout>

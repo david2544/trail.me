@@ -38,14 +38,19 @@ export const onFileUpload = ({ rawKml, history, hikeData, photos }) => {
 
     photoRef.child(photoName).put(photoFile, photoMetadata);
   });
-  console.log('object :>> ');
-  ref.child(fileName).put(rawKml, metadata);
 
-  Firebase.database()
-    .ref()
-    .child('hikes')
-    .child(hikeData.date)
-    .set({ ...hikeData }, () => history.push('/'));
+  ref
+    .child(fileName)
+    .put(rawKml, metadata)
+    .then(snapshot => {
+      snapshot.ref.getDownloadURL().then(kmlDownloadUrl => {
+        Firebase.database()
+          .ref()
+          .child('hikes')
+          .child(hikeData.date)
+          .set({ ...hikeData, kmlDownloadUrl }, () => history.push('/'));
+      });
+    });
 };
 
 export const resizeMap = mapRef => {

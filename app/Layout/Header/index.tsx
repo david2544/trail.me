@@ -79,8 +79,8 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, menuOpen }) => {
             </Link>
           </li>
           <li className={styles.menuItemWrapper}>
-            <Link to={LINKS.uploadHike} className={styles.menuItem}>
-              About
+            <Link to={LINKS.globalMap} className={styles.menuItem}>
+              Global map
             </Link>
           </li>
           <li
