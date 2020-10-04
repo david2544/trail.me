@@ -10,6 +10,7 @@ import history from '@app/utils/history';
 
 // firebase
 import Firebase from 'firebase/app';
+import 'firebase/analytics';
 import config from '@app/utils/firebaseConfig';
 
 // Import root app
@@ -28,6 +29,7 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app') as HTMLElement;
 Firebase.initializeApp(config);
+Firebase.analytics();
 
 const ConnectedApp = () => (
   <Provider store={store}>

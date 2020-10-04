@@ -6,6 +6,7 @@ const config = {
   storageBucket: 'trail-me.appspot.com',
   messagingSenderId: '605664374361',
   appId: '1:605664374361:web:522adb78c21a5ac62c8b48',
+  measurementId: 'G-DND09G2R9X',
 };
 
 export default config;
